@@ -1,4 +1,6 @@
 'use strict';
+require("./css/test.scss");
+//require("./css/main.css");
 /**
 * @see http://artsiom.mezin.eu/technofront/
 */
