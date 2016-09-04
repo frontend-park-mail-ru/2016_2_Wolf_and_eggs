@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Frontend privet</title>
+	<link rel="stylesheet" href="/css/milligram.min.css"/>
+	<link rel="stylesheet" href="/css/main.css" />
+	<script src="lib.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+	<!-- Emmet -->
+	<h3 id="helloWorld">Привет, залогинься!</h3>
+	<form action="/users" method="post" onsubmit="onSubmit(this); return false;">
+		<input required placeholder="Ваш email" type="email"  name="email" value="" />
+		<input required placeholder="Ваше имя" type="text" name="user" value="" />
+		<button name="name">
+			Привет!
+		</button>
+	</form>
+</body>
+</html>
