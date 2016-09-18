@@ -268,3 +268,7 @@ RussianName.prototype = {
         return RussianNameProcessor.word(this.mn, this.sex, 'middleName', gcase);
     }
 }
+
+if (typeof exports === 'object') {
+    exports.RussianName = RussianName;
+}

@@ -1,4 +1,7 @@
 'use strict';
+if (typeof exports === 'object') {
+  var RussianName = require('./name').RussianName;
+}
 
 let inflectionWord = (word, gcase) => {
   try {
