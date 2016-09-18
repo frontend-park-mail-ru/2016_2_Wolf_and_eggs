@@ -1,8 +1,5 @@
 let assert = require('assert');
-let hello = require('./public/main').hello;
 let plural = require('./public/main').plural;
-
-assert.equal(hello('Test'), 'Привет, Test');
 
 assert.equal(plural(0), 'Здравствуй, дух');
 assert.equal(plural(1), 'Рады приветствовать на нашем курсе!');

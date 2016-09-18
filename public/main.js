@@ -1,46 +1,61 @@
 'use strict';
 
+let inflectionWord = (word, gcase) => {
+  try {
+    let w = new RussianName(word);
+    switch (gcase) {
+      case 'gcaseIm':
+        return w.fullName(w.gcaseIm);
+
+      case 'gcaseRod':
+        return w.fullName(w.gcaseRod);
+
+      case 'gcaseDat':
+        return w.fullName(w.gcaseIm);
+
+      case 'gcaseVin':
+        return w.fullName(w.gcaseVin);
+
+      case 'gcaseTvor':
+        return w.fullName(w.gcaseTvor);
+
+      case 'gcasePred':
+        return w.fullName(w.gcasePred);
+
+      default:
+        return word;
+    }
+  } catch (e) {
+    return word + 'error'
+  }
+};
+
 function onSubmit(form) {
-	let data = {
-		user: form.elements['user'].value,
-		email: form.elements['email'].value,
-	};
+  let data = {
+    user: form.elements['user'].value,
+    email: form.elements['email'].value,
+  };
 
+  let result = request('/users', data);
+  let obj = JSON.parse(result);
+  let count = obj.count;
+  let name = obj.name;
 
-	// if (result === '100'){
-	//     form.hidden = true;
-	// }
-
-	let result = request('/users', data);
-	let obj = JSON.parse(result);
-	let count = obj.count;
-	let name = obj.name;
-
-	window.welcome.innerHTML = plural(count);
-	doIt(name);
+  window.welcome.innerHTML = plural(count, name);
 }
 
-function plural(count) {
-	if (count == 0) {
-		return "Здравствуй, дух";
-	}
-	if (count == 1) {
-		return "Рады приветствовать на нашем курсе!";
-	}
-	if (count > 1 && count < 15) {
-		return "Кликай дальше!! Еще осталось " + (15 - count) + " раз(а)";
-	}
-
-	else {
-		return "01001000 01101001 00101100 00100000 01100010 01110010 01101111";
-	}
-}
-
-function hello (arg) {
-	return "Привет, " + arg;
+function plural(count, name) {
+  if ((count % 10 == 2 || count % 10 == 3 || count % 10 == 4) && (count < 12 || count > 14)) {
+    let temp = inflectionWord('раз', 'gcaseRod');
+    return `Здравствуйте ${name}, вы вошли ${count} ${temp}`;
+  }
+  else {
+    let temp = inflectionWord('раз', 'gcaseIm');
+    return `Здравствуйте ${name}, вы вошли ${count} ${temp}`;
+  }
 }
 
 if (typeof exports === 'object') {
-	exports.hello = hello;
-	exports.plural = plural;
+  exports.hello = hello;
+  exports.plural = plural;
 }
