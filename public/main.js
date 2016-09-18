@@ -26,7 +26,7 @@ let inflectionWord = (word, gcase) => {
         return word;
     }
   } catch (e) {
-    return word + 'error'
+    return word + ' error'
   }
 };
 
@@ -56,6 +56,6 @@ function plural(count, name) {
 }
 
 if (typeof exports === 'object') {
-  exports.hello = hello;
+  exports.inflectionWord = inflectionWord;
   exports.plural = plural;
 }
