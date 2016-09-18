@@ -56,6 +56,5 @@ function plural(count, name) {
 }
 
 if (typeof exports === 'object') {
-  exports.inflectionWord = inflectionWord;
   exports.plural = plural;
 }

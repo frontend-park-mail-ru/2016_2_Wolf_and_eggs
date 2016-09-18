@@ -1,5 +1,4 @@
 let assert = require('assert');
-let inflectionWord = require('./public/main').inflectionWord;
 let plural = require('./public/main').plural;
 
 assert.equal(plural(0, 'Егор'), 'Здравствуйте Егор, вы вошли 0 раз');
