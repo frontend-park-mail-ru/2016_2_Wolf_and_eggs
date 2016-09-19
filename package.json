@@ -1,0 +1,32 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontend-park-mail-ru/sample.git"
+  },
+  "engines": {
+    "node": "6.3.1"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "technologger": "1.0.1"
+  },
+  "devDependencies": {
+    "css-loader": "^0.24.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "materialize-css": "^0.97.7",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2"
+  }
+}
