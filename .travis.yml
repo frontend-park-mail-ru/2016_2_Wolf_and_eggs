@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- '6'
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: PlF9DvS5eOPmbJviwpkjx3AYhhJZG8yjHN7gnV4YNUin27ivgAd/H4wYcsbb1afO2BZZvWtTD/Fes/lBb7lcfR0ri/gMVaRlLbLhPaaAbpKkP3oyN66gz2AtJHO7JE27ELzBErCVpST9ktiShHWJSdUKHQEOy3Re7bsZQTz0T9cRkNaCJ0UkgO3HrD5to3mE09ip1/Ac5x+rmbJ3eok40sCpGoikB+JpuhePSt3gip9NPUBMB0diOmSBGm7Msqpe4Ig6drZcmBKg0VdHCm4LS2lk7nSoqzvJ8JkPXcp/bdWGNTFAG6PnBEb9/vPJSARHFTN0GbzuCZhqf4kAleunQFn2otNbxVWVeiXpdLTPiQGrnigTeYZPlGQWPtkeUH28z0bP5rinXSOZYnv6/Xjv2odGtEZ6+ZJGVK8GTdhpbo4fnb2QJ2apG576k3YOBr1j4N7KFQYxu2fMDvvJKsvMIuqKhLXhq5gzmo9JL5aJYGPeyanQaMfGmGUVXkYeF/cxIqY8sataRcbr+9byoOmLl9R44dsre1IVVWGu/nr+iGTfhookCDK1tpqEPGKgUOCSHrZG6U35+d2Z2OgzTS8xy4InrDGoEKF6E+E6+TfnAlBr3UhwLEOrN8bRshBLtSOMKRZkvqSxgdnDEnOQCRS7nKnWQRb1Nm/LTw5Z7Uz+TJ8=
+  app: wolfandeggs
+  on:
+    repo: utrobin/2016_2_Wolf_and_eggs
