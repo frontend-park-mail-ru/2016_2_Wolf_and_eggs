@@ -11,3 +11,6 @@ deploy:
   app: wolfandeggs
   on:
     repo: utrobin/2016_2_Wolf_and_eggs
+script:
+  - node test
+  - npm run eslint

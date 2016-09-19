@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "eslint": "./node_modules/.bin/eslint test.js public/*js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,11 @@
   },
   "devDependencies": {
     "css-loader": "^0.24.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "materialize-css": "^0.97.7",
     "node-sass": "^3.8.0",
