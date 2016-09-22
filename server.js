@@ -10,20 +10,24 @@ app.use(technologger);
 
 var emails = {};
 
-app.post('/users', (req, res) => {
-    let email = req.body.email;
-    let name = req.body.user;
+app.get('/users', (req, res) => {
 
-    if (email in emails) {
-        emails[email].count++;
-        res.send(emails[email]);
-    }
-    else {
-        emails[email] = {name: name, count: 0, email: email};
-        res.send(emails[email]);
-    }
+  var color = req.query;
+  console.log(color);
+
+  // let email = req.body.email;
+  // let name = req.body.user;
+  //
+  // if (email in emails) {
+  //   emails[email].count++;
+  //   res.send(emails[email]);
+  // }
+  // else {
+  //   emails[email] = {name: name, count: 0, email: email};
+  //   res.send(emails[email]);
+  // }
 });
 
 app.listen(process.env.PORT || 3000, () => {
-	console.log(`App started on port ${process.env.PORT || 3000}`);
+  console.log(`App started on port ${process.env.PORT || 3000}`);
 });

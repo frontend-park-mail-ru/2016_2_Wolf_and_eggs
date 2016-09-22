@@ -11,7 +11,7 @@ assert.equal(plural(100, 'Егор'), 'Здравствуйте Егор, вы �
 
 global.window = {
   rules: ['fuck', 'dick', 'cunt']
-}
+};
 
 assert.equal(filter('fuck'), '****');
 assert.equal(filter('dick'), '****');

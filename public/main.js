@@ -1,6 +1,6 @@
 'use strict';
 if (typeof exports === 'object') {
-  var RussianName = require('./name').RussianName;
+  var RussianName = require('./libs/name').RussianName;
 }
 
 let inflectionWord = (word, gcase) => {
@@ -33,22 +33,44 @@ let inflectionWord = (word, gcase) => {
   }
 };
 
+function ajax() {
+  var xhr = new XMLHttpRequest();
+
+  var params = 'name=' + 'bgg' +
+    '&surname=' + 'gfgfg';
+
+  xhr.open("GET", '/users?' + params, true);
+
+  xhr.send();
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState != 4) return;
+
+    if (xhr.status != 200) {
+      alert(xhr.status + ': ' + xhr.statusText);
+    } else {
+      alert(xhr.responseText);
+    }
+
+  };
+}
+
 function onSubmit(form) {
   let data = {
     user: form.elements['user'].value,
     email: form.elements['email'].value,
   };
 
-  let result = request('/users', data);
-  let obj = JSON.parse(result);
-  let count = obj.count;
-  let name = obj.name;
-
-  window.welcome.innerHTML = plural(count, name);
+  let result = ajax();
+  // let obj = JSON.parse(result);
+  // let count = obj.count;
+  // let name = obj.name;
+  //
+  // window.welcome.innerHTML = plural(count, name);
 }
 
 function plural(count, name) {
-  if ((count % 10 == 2 || count % 10 == 3 || count % 10 == 4) && (count < 12 || count > 14)) {
+  if ((count % 10 === 2 || count % 10 === 3 || count % 10 === 4) && (count < 12 || count > 14)) {
     let temp = inflectionWord('раз', 'gcaseRod');
     return `Здравствуйте ${name}, вы вошли ${count} ${temp}`;
   }
