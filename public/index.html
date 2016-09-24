@@ -5,14 +5,12 @@
     <title>Frontend privet</title>
     <link rel="stylesheet" href="/css/reset.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
-    <script src="libs/name.js"></script>
-    <script src="lib.js"></script>
-    <script src="main.js"></script>
+    <script src="/built/bundle.js"></script>
 </head>
 <body>
     <span id="name"></span>
     <h1 id="welcome">Привет залогинься!</h1>
-    <form class="" action="/users" method="post" onsubmit="onSubmit(this); return false;">
+    <form class="" action="/users" method="post" onsubmit="onLoginSubmit(this); return false;">
         <input required placeholder="email" type="email" name="email" value="">
         <input required placeholder="name" type="text" name="user" value="">
         <button>
