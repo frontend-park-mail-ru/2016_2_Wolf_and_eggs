@@ -35,8 +35,8 @@
     "eslint-plugin-react": "^6.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "materialize-css": "^0.97.7",
-    "node-sass": "^3.8.0",
-    "sass-loader": "^4.0.1",
+    "node-sass": "^3.10.0",
+    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
   }
