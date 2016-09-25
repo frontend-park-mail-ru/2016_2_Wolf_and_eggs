@@ -47,7 +47,7 @@ form.on('submit', event => {
   let formData = form.getFormData();
   console.log('Петух', formData);
 
-  const result = postRequest('/api/login', formData);
+  const result = postRequest('/api/signup', formData);
   const obj =  {};
   console.log(obj.login)
 
