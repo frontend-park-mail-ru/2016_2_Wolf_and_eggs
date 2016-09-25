@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Frontend privet</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
     <link rel="stylesheet" href="/built/style.css"/>
-    <script src="/built/bundle.js"></script>
 </head>
 <body>
-    <span id="name"></span>
-    <h1 id="welcome">Привет залогинься!</h1>
-    <form class="" action="/users" method="post" onsubmit="onLoginSubmit(this); return false;">
-        <input required placeholder="login" type="text" name="login" value="">
-        <input required placeholder="*******" type="password" name="password" value="">
-        <button>
-            Go
-        </button>
-    </form>
+    <div class="wrapper">
+        <!--<span id="name"></span>-->
+        <!--<h1 id="welcome">Привет залогинься!</h1>-->
+        <!--<form class="" action="/users" method="post" onsubmit="onLoginSubmit(this); return false;">-->
+            <!--<input required placeholder="login" type="text" name="login" value="">-->
+            <!--<input required placeholder="*******" type="password" name="password" value="">-->
+            <!--<button>-->
+                <!--Go-->
+            <!--</button>-->
+        <!--</form>-->
+        <div class="js-login">
+        </div>
+        <script src="/built/bundle.js"></script>
+    </div>
 </body>
 </html>
