@@ -30,7 +30,7 @@ export default class Form {
       return `
         <div class="input-field">
           <label for="${field.name}">${field.label}</label>
-          <input type="${field.type}" tabindex="${this.count}" onblur="alert('Клик!')" name="${field.name}" ${temp}>
+          <input type="${field.type}" tabindex="${this.count}" onblur="${this.event()}" name="${field.name}" ${temp}>
         </div>
       `
     }).join(' ')
@@ -76,10 +76,20 @@ export default class Form {
     console.log(e, 'gfgfg');
   }
 
-  /**
-   * Взять данные формы
-   * @return {object}
-   */
+  addEvents() {
+    let form = this.el.querySelector('form');
+    let elements = form.elements;
+
+    Object.keys(elements).forEach(element => {
+      if (!elements[element].name) {
+        return;
+      }
+      elements[element].addEventListener("focus", function() {
+        console.log('gfgfg')
+      });
+    });
+  }
+
   getFormData() {
     let form = this.el.querySelector('form');
     let elements = form.elements;
@@ -102,5 +112,6 @@ export default class Form {
   render() {
     this._updateHtml()
     this._installControls();
+    this.addEvents();
   }
 }

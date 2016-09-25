@@ -1,48 +1,34 @@
-import Form from './components/form/form';
+import Signin from './pages/signin/signin';
+import Signup from './pages/signup/signup';
 
 require('./css/reset.css');
 require('./css/main.scss');
 
+window.pageIndex = 0;
 
-let loginPage = document.querySelector('.js-login');
-
-let form = new Form({
-  el: document.createElement('div'),
-  data: {
-    title: 'Login',
-    fields: [
-      {
-        name: 'username',
-        type: 'text',
-        label: 'Username'
-      },
-      {
-        name: 'password',
-        type: 'password',
-        label: 'Password'
-      }
-    ],
-    controls: [
-      {
-        text: 'Sign in',
-        attrs: {
-          type: 'submit'
-        }
-      }
-    ]
+window.getPageContent = function () {
+  switch (pageIndex) {
+    case 0:
+      return Signin;
+    case 1:
+      return Signup;
+    case 2:
+      return 'gfgfg';
+    default:
+      return 'Опачки а мы баг словили';
   }
-});
+}
 
-form.on('submit', event => {
-  event.preventDefault();
-  let formData = form.getFormData();
-  console.log('Петух', formData)
-});
+window.page = document.querySelector('.js-login');
 
-form.on('click', event => {
+window.updatePage = function(index) {
+  page.querySelector('div').remove();
+  pageIndex = index;
+  page.appendChild(getPageContent());
+};
 
-});
+page.appendChild(getPageContent());
 
-loginPage.appendChild(form.el);
+
 
 

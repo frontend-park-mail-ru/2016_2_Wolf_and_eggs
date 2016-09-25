@@ -4,12 +4,10 @@ html, body {
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87)
 }
-
 .wrapper{
   width: 1000px;
   margin: auto;
 }
-
 .ui-form{
   width: 350px;
   padding: 15px;
@@ -19,4 +17,16 @@ html, body {
 }
 .ui-button{
   width: 100%;
+}
+.link-signup{
+  width: 350px;
+  padding: 15px;
+  margin: auto;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 18px;
+}
+a{
+  cursor: pointer;
 }
