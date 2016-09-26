@@ -17,18 +17,14 @@ window.getPageContent = function () {
     default:
       return 'Опачки а мы баг словили';
   }
-}
+};
 
 window.page = document.querySelector('.js-login');
 
-window.updatePage = function(index) {
+window.updatePage = function (index) {
   page.querySelector('div').remove();
   pageIndex = index;
   page.appendChild(getPageContent());
 };
 
 page.appendChild(getPageContent());
-
-
-
-

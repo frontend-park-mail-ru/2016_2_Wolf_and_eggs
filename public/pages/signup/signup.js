@@ -1,11 +1,8 @@
-/**
- * Created by utrobin on 25.09.16.
- */
 import Form from '../../components/form/form';
-import { plural, russianPluralRule } from '../../plural';
-import { postRequest } from '../../libs/requests';
+import plural from '../../plural';
+import { jsonRequest } from '../../libs/requests';
 
-let form = new Form({
+const form = new Form({
   el: document.createElement('div'),
   data: {
     title: 'Login',
@@ -13,56 +10,53 @@ let form = new Form({
       {
         name: 'login',
         type: 'text',
-        label: 'Username'
+        label: 'Username',
       },
       {
         name: 'email',
         type: 'email',
-        label: 'Email'
+        label: 'Email',
       },
       {
         name: 'password',
         type: 'password',
-        label: 'Password'
+        label: 'Password',
       },
       {
         name: 'password',
         type: 'password',
-        label: 'Repeat password'
-      }
+        label: 'Repeat password',
+      },
     ],
     controls: [
       {
         text: 'Sign up',
         attrs: {
-          type: 'submit'
-        }
-      }
-    ]
-  }
+          type: 'submit',
+        },
+      },
+    ],
+  },
 });
 
-form.on('submit', event => {
+form.on('submit', (event) => {
   event.preventDefault();
-  let formData = form.getFormData();
-  console.log('Петух', formData);
+  const formData = form.getFormData();
 
-  const result = postRequest('/api/signup', formData);
-  const obj =  {};
-  console.log(obj.login)
+  const result = jsonRequest('/api/signup', formData);
+  const obj = JSON.parse(result);
 
-  if (typeof (obj.login) === 'undefined'){
+  if (typeof (obj.login) === 'undefined') {
     document.querySelector('.ban').hidden = false;
-  }
-  else{
+  } else {
     const count = obj.amount;
     const name = obj.login;
     window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
-      ['раз', 'раза', 'раз'], russianPluralRule)}`;
+      ['раз', 'раза', 'раз'], 'rus')}`;
   }
 });
 
-let Signup = document.createElement('div');
+const Signup = document.createElement('div');
 Signup.appendChild(form.el);
 
 export default Signup;

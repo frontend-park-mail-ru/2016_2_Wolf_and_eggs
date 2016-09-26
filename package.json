@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./public/built/test.js",
-    "eslint": "./node_modules/.bin/eslint test.js public/*js",
+    "eslint": "./node_modules/.bin/eslint public/*.js public/components/**/*.js public/pages/**/*.js",
     "webpack": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "repository": {

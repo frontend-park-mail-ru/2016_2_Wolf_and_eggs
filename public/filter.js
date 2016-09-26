@@ -16,5 +16,5 @@ function filter(str, rules) {
 }
 
 export default function matFilter(str) {
-  return filter(str, ['fuck', 'dick', 'cunt']);
+  return filter(str, ['love', 'banana', 'kitten']);
 }

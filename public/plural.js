@@ -1,12 +1,4 @@
-export function plural(number, forms, rule) {
-  let num = number;
-  if (typeof (number) === 'string') {
-    num = parseInt(number, 0);
-  }
-  return forms[rule(num)];
-}
-
-export function russianPluralRule(number) {
+function russianPluralRule(number) {
   const lastDigit = number % 10;
   if (lastDigit === 1 && number !== 11) {
     return 0;
@@ -16,3 +8,17 @@ export function russianPluralRule(number) {
   }
   return 2;
 }
+
+export default function plural(number, forms, lang) {
+  let num = number;
+  if (typeof (number) === 'string') {
+    num = parseInt(number, 0);
+  }
+  switch (lang) {
+    case 'rus':
+      return forms[russianPluralRule(num)];
+    default:
+      throw new Error(`plural does not support ${lang}`);
+  }
+}
+

@@ -1,49 +1,37 @@
-/**
- * Created by utrobin on 25.09.16.
- */
 import Button from '../button/button';
 
 export default class Form {
-  /**
-   * Конструктор класса Form
-   */
-  constructor(options = {data: {}}) {
+
+  constructor(options = { data: {} }) {
     this.data = options.data;
     this.el = options.el;
     this.count = 0;
     this.render();
   }
 
-  /**
-   * Вернуть поля формы
-   * @return {string}
-   */
+  getFields() {
+    const { fields = [] } = this.data;
 
-  _getFields() {
-    let {fields = []} = this.data;
-
-    return fields.map(field => {
+    return fields.map((field) => {
       let temp = '';
-      if (this.count === 0)
+      if (this.count === 0) {
         temp = 'autofocus';
-      this.count++;
+      }
+      this.counti += 1;
       return `
         <div class="input-field">
           <label for="${field.name}">${field.label}</label>
-          <input type="${field.type}" tabindex="${this.count}" onblur="${this.event()}" name="${field.name}" ${temp}>
+          <input type="${field.type}" tabindex="${this.count}" onblur="${Form.event()}" name="${field.name}" ${temp}>
         </div>
-      `
-    }).join(' ')
+      `;
+    }).join(' ');
   }
 
-  /**
-   * Обновить html компонента
-   */
-  _updateHtml() {
+  updateHtml() {
     this.el.innerHTML = `
     <form class="ui-form z-depth-1">
       <div>
-        ${this._getFields()}
+        ${this.getFields()}
       </div>
       <div class="js-controls">
       </div>
@@ -51,53 +39,46 @@ export default class Form {
   `;
   }
 
-  /**
-   * Вставить управляющие элементы в форму
-   */
-  _installControls() {
-    let {controls = []} = this.data;
+  installControls() {
+    const { controls = [] } = this.data;
 
-    controls.forEach(data => {
-      let control = new Button({text: data.text}).render();
+    controls.forEach((data) => {
+      const control = new Button({ text: data.text }).render();
       this.el.querySelector('.js-controls').appendChild(control.el);
     });
   }
 
-  /**
-   * Подписка на событие
-   * @param {string} type - имя события
-   * @param {function} callback - коллбек
-   */
   on(type, callback) {
     this.el.addEventListener(type, callback);
   }
 
-  event(e) {
+  // FIXME made it static. Dont know what it does((.
+  static event(e) {
     console.log(e, 'gfgfg');
   }
 
   addEvents() {
-    let form = this.el.querySelector('form');
-    let elements = form.elements;
+    const form = this.el.querySelector('form');
+    const elements = form.elements;
 
-    Object.keys(elements).forEach(element => {
+    Object.keys(elements).forEach((element) => {
       if (!elements[element].name) {
         return;
       }
-      elements[element].addEventListener("focus", function() {
-        console.log('gfgfg')
+      elements[element].addEventListener('focus', () => {
+        console.log('gfgfg');
       });
     });
   }
 
   getFormData() {
-    let form = this.el.querySelector('form');
-    let elements = form.elements;
-    let fields = {};
+    const form = this.el.querySelector('form');
+    const elements = form.elements;
+    const fields = {};
 
-    Object.keys(elements).forEach(element => {
-      let name = elements[element].name;
-      let value = elements[element].value;
+    Object.keys(elements).forEach((element) => {
+      const name = elements[element].name;
+      const value = elements[element].value;
 
       if (!name) {
         return;
@@ -110,8 +91,8 @@ export default class Form {
   }
 
   render() {
-    this._updateHtml()
-    this._installControls();
+    this.updateHtml();
+    this.installControls();
     this.addEvents();
   }
 }
