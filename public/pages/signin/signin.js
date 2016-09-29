@@ -46,15 +46,23 @@ form.on('submit', (event) => {
   }
 });
 
-const Signin = document.createElement('div');
-Signin.appendChild(form.el);
+function Signin(updatePage) {
+  let template = document.createElement('div');
 
-const temp = document.createElement('div');
-temp.innerHTML = `
+  template.appendChild(form.el);
+
+  const temp = document.createElement('div');
+  temp.innerHTML = `
   <div class="link-signup z-depth-1">
-    <span>New to Protection? <a onclick="updatePage(1)">Create an account.</a></span>
+    <span>New to Outlive? <a>Create an account.</a></span>
   </div>
  `;
-Signin.appendChild(temp);
+  console.log(updatePage.updatePage(1), 'gfgfgfgfggfg');
+  temp.querySelector('a').addEventListener('click', updatePage.updatePage(1));
+  template.appendChild(temp);
+
+
+  return template;
+}
 
 export default Signin;

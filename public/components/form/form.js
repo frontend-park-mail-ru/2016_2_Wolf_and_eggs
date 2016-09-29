@@ -17,7 +17,7 @@ export default class Form {
       if (this.count === 0) {
         temp = 'autofocus';
       }
-      this.counti += 1;
+      this.count += 1;
       return `
         <div class="input-field">
           <label for="${field.name}">${field.label}</label>

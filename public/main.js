@@ -4,27 +4,38 @@ import Signup from './pages/signup/signup';
 require('./css/reset.css');
 require('./css/main.scss');
 
-window.pageIndex = 0;
+function main() {
+  var pageIndex = 0;
+  var page = document.querySelector('.js-login');
 
-window.getPageContent = function () {
-  switch (pageIndex) {
-    case 0:
-      return Signin;
-    case 1:
-      return Signup;
-    case 2:
-      return 'gfgfg';
-    default:
-      return 'Опачки а мы баг словили';
+  let _getPageContent = () => {
+    switch (pageIndex) {
+      case 0:
+        return Signin(this);
+      case 1:
+        return Signup;
+      case 2:
+        return 'gfgfg';
+      default:
+        return 'Опачки а мы баг словили';
+    }
+  };
+
+  this.updatePage = index => {
+    if (page.querySelector('div') === null) {
+      return;
+    }
+    else {
+      page.querySelector('div').remove();
+      pageIndex = index;
+      page.appendChild(_getPageContent());
+    }
+  };
+
+  this.render = () => {
+    page.appendChild(_getPageContent());
   }
-};
+}
 
-window.page = document.querySelector('.js-login');
-
-window.updatePage = function (index) {
-  page.querySelector('div').remove();
-  pageIndex = index;
-  page.appendChild(getPageContent());
-};
-
-page.appendChild(getPageContent());
+var index = new main();
+index.render();
