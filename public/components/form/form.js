@@ -173,15 +173,15 @@ export default class Form {
       const obj = JSON.parse(result);
 
       if (typeof (obj.login) === 'undefined') {
-        window.welcome.innerHTML = obj.reason;
+        window.welcome.innerHTML = `<span>${obj.reason}</span>`;
         window.welcome.hidden = false;
       } else {
         if (this.data.title === 'login') {
           const count = obj.amount;
           const name = obj.login;
 
-          window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
-            ['раз', 'раза', 'раз'], 'rus')}`;
+          window.welcome.innerHTML = `<span>Привет, ${name}. Ты зашел ${count} ${plural(count,
+            ['раз', 'раза', 'раз'], 'rus')}</span>`;
         } else {
           window.updatePage(0);
         }

@@ -7,6 +7,7 @@ html, body {
 .wrapper{
   width: 1000px;
   margin: auto;
+  margin-top: 80px;
 }
 .ui-form{
   width: 350px;
@@ -15,7 +16,7 @@ html, body {
   border-radius: 2px;
 }
 .js-login{
-  margin-top: 80px;
+  margin-top: 30px;
 }
 .ui-error{
   width: 350px;
@@ -32,6 +33,19 @@ html, body {
 .ui-button{
   margin-top: 15px;
   width: 100%;
+}
+.welcome{
+  width: 350px;
+  margin: auto;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 18px;
+}
+.welcome span{
+  padding: 15px;
+  display: inline-block;
+  color:  #2bbbad;
 }
 .link-signup{
   width: 350px;
