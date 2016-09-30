@@ -1,4 +1,6 @@
 import Button from '../button/button';
+import plural from '../../plural';
+import { jsonRequest } from '../../libs/requests';
 
 export default class Form {
 
@@ -6,32 +8,62 @@ export default class Form {
     this.data = options.data;
     this.el = options.el;
     this.count = 0;
+    this.requeredFields = {};
+    this.initialRequeredFields = {};
     this.render();
   }
 
-  getFields() {
+  _getFieldsRequered() {
+    const { fields = [] } = this.data;
+    const FieldsRequered = {};
+
+    fields.forEach((field) => {
+      if (field.required === true)
+        FieldsRequered[field.name] = false;
+      else
+        FieldsRequered[field.name] = true;
+    });
+
+    this.requeredFields = FieldsRequered;
+
+    for (var k in this.requeredFields)
+      this.initialRequeredFields[k] = this.requeredFields[k];
+  }
+
+  _isFilled() {
+    for (let i = 0; i < Object.keys(this.requeredFields).length; i++) {
+      if (this.requeredFields[Object.keys(this.requeredFields)[i]] === false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  _getFields() {
     const { fields = [] } = this.data;
 
     return fields.map((field) => {
-      let temp = '';
-      if (this.count === 0) {
-        temp = 'autofocus';
-      }
+      // let temp = '';
+      // if (this.count === 0) {
+      //   temp = 'autofocus';
+      // }
       this.count += 1;
       return `
-        <div class="input-field">
+        <div class="input-field" name="${field.name}.P">
           <label for="${field.name}">${field.label}</label>
-          <input type="${field.type}" tabindex="${this.count}" onblur="${Form.event()}" name="${field.name}" ${temp}>
+          <input type="${field.type}" tabindex="${this.count}" name="${field.name}">
+          <i>This field is requered</i>
         </div>
       `;
     }).join(' ');
   }
 
-  updateHtml() {
+  _updateHtml() {
     this.el.innerHTML = `
+    <div class="ui-error z-depth-1">Пароли не совпадают</div>
     <form class="ui-form z-depth-1">
       <div>
-        ${this.getFields()}
+        ${this._getFields()}
       </div>
       <div class="js-controls">
       </div>
@@ -39,7 +71,7 @@ export default class Form {
   `;
   }
 
-  installControls() {
+  _installControls() {
     const { controls = [] } = this.data;
 
     controls.forEach((data) => {
@@ -48,16 +80,96 @@ export default class Form {
     });
   }
 
+  addError() {
+    for (let i = 0; i < Object.keys(this.requeredFields).length; i++) {
+      let temp = Object.keys(this.requeredFields)[i];
+      if (this.requeredFields[temp] === false) {
+        if(document.getElementsByName(temp + '.P')[0].className !== 'input-field error')
+          document.getElementsByName(temp + '.P')[0].className += ' error';
+      }
+    }
+  }
+
+  _comparePassword() {
+    if (this.requeredFields.password2 === undefined)
+      return true;
+    else {
+      let temp = false;
+
+      let pas1 = document.getElementsByName('password1')[0].value;
+      let pas2 = document.getElementsByName('password2')[0].value;
+
+      if (pas1 === pas2) {
+        document.getElementsByClassName('ui-error')[0].style.display = 'none';
+        temp = true;
+      }
+      else {
+        document.getElementsByClassName('ui-error')[0].style.display = 'block';
+      }
+
+      return temp;
+    }
+  }
+
+  _onBlur(event) {
+    let temp = event.target.name;
+
+    if(event.target.value === '' && this.initialRequeredFields[temp] === false)
+      this.requeredFields[temp] = false;
+
+    if (event.target.value === '' && this.requeredFields[temp] === false) {
+      if(document.getElementsByName(temp + '.P')[0].className !== 'input-field error'){
+        this.requeredFields[temp] = false;
+        document.getElementsByName(temp + '.P')[0].className += ' error';
+      }
+    }
+    else
+      this.requeredFields[temp] = true;
+  }
+
+  _onFocus(event) {
+    let temp = event.target.name;
+    if(document.getElementsByName(temp + '.P')[0].className !== 'input-field') {
+      document.getElementsByName(temp + '.P')[0].className += 'input-field';
+    }
+  }
+
+  _onSubmit() {
+    this.el.addEventListener('submit', event => {
+      event.preventDefault();
+
+      let check = this._comparePassword(event.target);
+
+      if (this._isFilled() === false) {
+        this.addError();
+        return;
+      }
+
+      if (check === false)
+        return;
+
+      const formData = this._getFormData();
+      const result = jsonRequest(this.data.url, formData);
+      const obj = JSON.parse(result);
+
+      if (typeof (obj.login) === 'undefined') {
+        document.querySelector('.ban').hidden = false;
+      } else {
+        const count = obj.amount;
+        const name = obj.login;
+        window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
+          ['раз', 'раза', 'раз'], 'rus')}`;
+      }
+    });
+  }
+
   on(type, callback) {
     this.el.addEventListener(type, callback);
   }
 
-  // FIXME made it static. Dont know what it does((.
-  static event(e) {
-    console.log(e, 'gfgfg');
-  }
-
   addEvents() {
+    this._onSubmit();
+
     const form = this.el.querySelector('form');
     const elements = form.elements;
 
@@ -65,13 +177,12 @@ export default class Form {
       if (!elements[element].name) {
         return;
       }
-      elements[element].addEventListener('focus', () => {
-        console.log('gfgfg');
-      });
+      elements[element].addEventListener('blur', this._onBlur.bind(this));
+      elements[element].addEventListener('focus', this._onFocus);
     });
   }
 
-  getFormData() {
+  _getFormData() {
     const form = this.el.querySelector('form');
     const elements = form.elements;
     const fields = {};
@@ -91,8 +202,9 @@ export default class Form {
   }
 
   render() {
-    this.updateHtml();
-    this.installControls();
+    this._updateHtml();
+    this._getFieldsRequered();
+    this._installControls();
     this.addEvents();
   }
 }

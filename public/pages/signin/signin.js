@@ -1,21 +1,22 @@
 import Form from '../../components/form/form';
-import plural from '../../plural';
-import { jsonRequest } from '../../libs/requests';
 
 const form = new Form({
   el: document.createElement('div'),
   data: {
     title: 'Login',
+    url: '/api/login',
     fields: [
       {
         name: 'login',
         type: 'text',
         label: 'Username',
+        required: true
       },
       {
         name: 'password',
         type: 'password',
         label: 'Password',
+        required: true
       },
     ],
     controls: [
@@ -29,40 +30,15 @@ const form = new Form({
   },
 });
 
-form.on('submit', (event) => {
-  event.preventDefault();
-  const formData = form.getFormData();
+const Signin = document.createElement('div');
+Signin.appendChild(form.el);
 
-  const result = jsonRequest('/api/login', formData);
-  const obj = JSON.parse(result);
-
-  if (typeof (obj.login) === 'undefined') {
-    document.querySelector('.ban').hidden = false;
-  } else {
-    const count = obj.amount;
-    const name = obj.login;
-    window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
-      ['раз', 'раза', 'раз'], 'rus')}`;
-  }
-});
-
-function Signin(updatePage) {
-  let template = document.createElement('div');
-
-  template.appendChild(form.el);
-
-  const temp = document.createElement('div');
-  temp.innerHTML = `
+const temp = document.createElement('div');
+temp.innerHTML = `
   <div class="link-signup z-depth-1">
-    <span>New to Outlive? <a>Create an account.</a></span>
+    <span>New to Outlive? <a onclick="updatePage(1)">Create an account.</a></span>
   </div>
  `;
-  console.log(updatePage.updatePage(1), 'gfgfgfgfggfg');
-  temp.querySelector('a').addEventListener('click', updatePage.updatePage(1));
-  template.appendChild(temp);
-
-
-  return template;
-}
+Signin.appendChild(temp);
 
 export default Signin;

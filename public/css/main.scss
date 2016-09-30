@@ -13,9 +13,24 @@ html, body {
   padding: 15px;
   margin: auto;
   border-radius: 2px;
-  margin-top: 150px;
+}
+.js-login{
+  margin-top: 80px;
+}
+.ui-error{
+  width: 350px;
+  padding: 15px;
+  margin: auto;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  color: #911;
+  background-color: #fcdede;
+  border-color: #d2b2b2;
+  text-align: center;
+  display: none;
 }
 .ui-button{
+  margin-top: 15px;
   width: 100%;
 }
 .link-signup{
@@ -30,6 +45,20 @@ html, body {
 a{
   cursor: pointer;
 }
-a:hover{
-  text-decoration: underline;
+.input-field i{
+  font-size: 13px;
+  color: red;
+}
+.input-field input{
+  margin-bottom: 0;
+}
+.input-field i{
+  display: none;
+}
+.error i{
+  display: inline;
+}
+.error input{
+  border-bottom-color: red;
+  border-width: 2px;
 }
