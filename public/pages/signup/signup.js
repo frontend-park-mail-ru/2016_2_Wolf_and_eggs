@@ -3,7 +3,7 @@ import Form from '../../components/form/form';
 const form = new Form({
   el: document.createElement('div'),
   data: {
-    title: 'Login',
+    title: 'signup',
     url: '/api/signup',
     fields: [
       {
@@ -41,6 +41,7 @@ const form = new Form({
     ],
   },
 });
+
 
 const Signup = document.createElement('div');
 Signup.appendChild(form.el);

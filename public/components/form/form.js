@@ -176,10 +176,15 @@ export default class Form {
         document.querySelector('.ban').innerHTML = obj.reason;
         document.querySelector('.ban').hidden = false;
       } else {
-        const count = obj.amount;
-        const name = obj.login;
-        window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
-          ['раз', 'раза', 'раз'], 'rus')}`;
+        if (this.data.title === 'login') {
+          const count = obj.amount;
+          const name = obj.login;
+
+          window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
+            ['раз', 'раза', 'раз'], 'rus')}`;
+        } else {
+          window.updatePage(0);
+        }
       }
     });
   }
@@ -213,8 +218,9 @@ export default class Form {
       let name = elements[element].name;
       const value = elements[element].value;
 
-      if (name === 'password1' || name === 'password2')
+      if (name === 'password1' || name === 'password2') {
         name = 'password';
+      }
 
       if (!name) {
         return;
