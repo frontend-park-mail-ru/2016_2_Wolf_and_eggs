@@ -13,9 +13,9 @@ assert.equal(plural(15, rusOne, 'rus'), 'раз');
 assert.equal(plural(100, rusOne, 'rus'), 'раз');
 
 assert.equal(matFilter('love'), '****');
-assert.equal(matFilter('banana'), '****');
-assert.equal(matFilter('kitten'), '****');
+assert.equal(matFilter('banana'), '******');
+assert.equal(matFilter('kitten'), '******');
 assert.equal(matFilter('love you'), '**** you');
-assert.equal(matFilter('you kitten'), 'you ****');
-assert.equal(matFilter('suck my banana'), 'suck my ****');
-assert.equal(matFilter('kitten love banana banana'), '**** **** **** ****');
+assert.equal(matFilter('you kitten'), 'you ******');
+assert.equal(matFilter('suck my banana'), 'suck my ******');
+assert.equal(matFilter('kitten love banana banana'), '****** **** ****** ******');

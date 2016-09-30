@@ -8,7 +8,6 @@ module.exports = {
         path: "./public/built",
         filename: "[name].js"
     },
-    watch: true,
     module: {
         loaders: [
             {

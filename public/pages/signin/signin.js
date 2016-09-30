@@ -10,13 +10,13 @@ const form = new Form({
         name: 'login',
         type: 'text',
         label: 'Username',
-        required: true
+        required: true,
       },
       {
         name: 'password',
         type: 'password',
         label: 'Password',
-        required: true
+        required: true,
       },
     ],
     controls: [

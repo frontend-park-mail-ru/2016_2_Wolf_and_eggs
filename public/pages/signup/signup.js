@@ -9,25 +9,25 @@ const form = new Form({
         name: 'login',
         type: 'text',
         label: 'Username',
-        required: false
+        required: false,
       },
       {
         name: 'email',
         type: 'email',
         label: 'Email',
-        required: true
+        required: true,
       },
       {
         name: 'password1',
         type: 'password',
         label: 'Password',
-        required: true
+        required: true,
       },
       {
         name: 'password2',
         type: 'password',
         label: 'Repeat password',
-        required: true
+        required: true,
       },
     ],
     controls: [

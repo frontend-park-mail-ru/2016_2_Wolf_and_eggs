@@ -18,20 +18,22 @@ export default class Form {
     const FieldsRequered = {};
 
     fields.forEach((field) => {
-      if (field.required === true)
+      if (field.required === true) {
         FieldsRequered[field.name] = false;
-      else
+      } else {
         FieldsRequered[field.name] = true;
+      }
     });
 
     this.requeredFields = FieldsRequered;
 
-    for (var k in this.requeredFields)
-      this.initialRequeredFields[k] = this.requeredFields[k];
+    for (let i = 0; i < Object.keys(this.requeredFields).length; i += 1) {
+      this.initialRequeredFields[i] = this.requeredFields[i];
+    }
   }
 
   _isFilled() {
-    for (let i = 0; i < Object.keys(this.requeredFields).length; i++) {
+    for (let i = 0; i < Object.keys(this.requeredFields).length; i += 1) {
       if (this.requeredFields[Object.keys(this.requeredFields)[i]] === false) {
         return false;
       }
@@ -81,72 +83,73 @@ export default class Form {
   }
 
   addError() {
-    for (let i = 0; i < Object.keys(this.requeredFields).length; i++) {
-      let temp = Object.keys(this.requeredFields)[i];
+    for (let i = 0; i < Object.keys(this.requeredFields).length; i += 1) {
+      const temp = Object.keys(this.requeredFields)[i];
       if (this.requeredFields[temp] === false) {
-        if(document.getElementsByName(temp + '.P')[0].className !== 'input-field error')
-          document.getElementsByName(temp + '.P')[0].className += ' error';
+        if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field error') {
+          document.getElementsByName(`${temp}.P`)[0].className += ' error';
+        }
       }
     }
   }
 
   _comparePassword() {
-    if (this.requeredFields.password2 === undefined)
+    if (this.requeredFields.password2 === undefined) {
       return true;
-    else {
-      let temp = false;
-
-      let pas1 = document.getElementsByName('password1')[0].value;
-      let pas2 = document.getElementsByName('password2')[0].value;
-
-      if (pas1 === pas2) {
-        document.getElementsByClassName('ui-error')[0].style.display = 'none';
-        temp = true;
-      }
-      else {
-        document.getElementsByClassName('ui-error')[0].style.display = 'block';
-      }
-
-      return temp;
     }
+    let temp = false;
+
+    const pas1 = document.getElementsByName('password1')[0].value;
+    const pas2 = document.getElementsByName('password2')[0].value;
+
+    if (pas1 === pas2) {
+      document.getElementsByClassName('ui-error')[0].style.display = 'none';
+      temp = true;
+    } else {
+      document.getElementsByClassName('ui-error')[0].style.display = 'block';
+    }
+
+    return temp;
   }
 
   _onBlur(event) {
-    let temp = event.target.name;
+    const temp = event.target.name;
 
-    if(event.target.value === '' && this.initialRequeredFields[temp] === false)
+    if (event.target.value === '' && this.initialRequeredFields[temp] === false) {
       this.requeredFields[temp] = false;
+    }
 
     if (event.target.value === '' && this.requeredFields[temp] === false) {
-      if(document.getElementsByName(temp + '.P')[0].className !== 'input-field error'){
+      if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field error') {
         this.requeredFields[temp] = false;
-        document.getElementsByName(temp + '.P')[0].className += ' error';
+        document.getElementsByName(`${temp}.P`)[0].className += ' error';
       }
-    }
-    else
+    } else {
       this.requeredFields[temp] = true;
+    }
   }
 
-  _onFocus(event) {
-    let temp = event.target.name;
-    if(document.getElementsByName(temp + '.P')[0].className !== 'input-field') {
-      document.getElementsByName(temp + '.P')[0].className += 'input-field';
+  static _onFocus(event) {
+    const temp = event.target.name;
+    if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field') {
+      document.getElementsByName(`${temp}.P`)[0].className += 'input-field';
     }
   }
 
   _onSubmit() {
-    this.el.addEventListener('submit', event => {
+    this.el.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      let check = this._comparePassword(event.target);
+      const check = this._comparePassword(event.target);
 
       if (this._isFilled() === false) {
         this.addError();
         return;
       }
 
-      if (check === false)
+      if (check === false) {
         return;
+      }
 
       const formData = this._getFormData();
       const result = jsonRequest(this.data.url, formData);

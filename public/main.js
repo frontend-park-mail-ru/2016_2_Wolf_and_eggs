@@ -28,9 +28,6 @@ window.updatePage = function (index) {
 };
 
 page.appendChild(getPageContent());
-
-
-
 // function main() {
 //   var pageIndex = 0;
 //   var page = document.querySelector('.js-login');
