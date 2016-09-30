@@ -173,10 +173,8 @@ export default class Form {
       const obj = JSON.parse(result);
 
       if (typeof (obj.login) === 'undefined') {
-        document.querySelector('.ban').innerHTML = obj.reason;
-        document.querySelector('.ban').hidden = false;
-
-
+        window.welcome.innerHTML = obj.reason;
+        window.welcome.hidden = false;
       } else {
         if(this.data.title === 'login') {
           const count = obj.amount;
