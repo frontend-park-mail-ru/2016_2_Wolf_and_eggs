@@ -1,26 +1,20 @@
-if (typeof window === 'object') {
-  window.rules = ['fuck', 'dick', 'cunt'];
-}
+function filter(str, rules) {
+  let result = `${str}`;
 
-function filter(str) {
-  let rules = window.rules || [];
-
-  str = str + '';
-
-  rules = rules.map(rule => {
-    return {
+  const rulesRegex = rules.map(rule => (
+    {
       regexp: new RegExp(`\\b${rule}\\b`, 'g'),
-      length: rule.length
-    };
+      length: rule.length,
+    }
+  ));
+
+  rulesRegex.forEach((rule) => {
+    result = result.replace(rule.regexp, (new Array(rule.length + 1)).join('*'));
   });
 
-  rules.forEach(rule => {
-    str = str.replace(rule.regexp, (new Array(rule.length + 1)).join('*'))
-  });
-
-  return str;
+  return result;
 }
 
-if (typeof exports === 'object') {
-  exports.filter  = filter;
+export default function matFilter(str) {
+  return filter(str, ['love', 'banana', 'kitten']);
 }

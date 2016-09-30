@@ -1,63 +1,67 @@
-'use strict';
-if (typeof exports === 'object') {
-  var RussianName = require('./name').RussianName;
-}
+import Signin from './pages/signin/signin';
+import Signup from './pages/signup/signup';
 
-let inflectionWord = (word, gcase) => {
-  try {
-    let w = new RussianName(word);
-    switch (gcase) {
-      case 'gcaseIm':
-        return w.fullName(w.gcaseIm);
+require('./css/reset.css');
+require('./css/main.scss');
 
-      case 'gcaseRod':
-        return w.fullName(w.gcaseRod);
+window.pageIndex = 0;
 
-      case 'gcaseDat':
-        return w.fullName(w.gcaseIm);
-
-      case 'gcaseVin':
-        return w.fullName(w.gcaseVin);
-
-      case 'gcaseTvor':
-        return w.fullName(w.gcaseTvor);
-
-      case 'gcasePred':
-        return w.fullName(w.gcasePred);
-
-      default:
-        return word;
-    }
-  } catch (e) {
-    return word + ' error'
+window.getPageContent = function () {
+  switch (pageIndex) {
+    case 0:
+      return Signin;
+    case 1:
+      return Signup;
+    case 2:
+      return 'gfgfg';
+    default:
+      return 'Опачки а мы баг словили';
   }
 };
 
-function onSubmit(form) {
-  let data = {
-    user: form.elements['user'].value,
-    email: form.elements['email'].value,
-  };
+window.page = document.querySelector('.js-login');
 
-  let result = request('/users', data);
-  let obj = JSON.parse(result);
-  let count = obj.count;
-  let name = obj.name;
+window.updatePage = function (index) {
+  page.querySelector('div').remove();
+  pageIndex = index;
+  page.appendChild(getPageContent());
+};
 
-  window.welcome.innerHTML = plural(count, name);
-}
+page.appendChild(getPageContent());
 
-function plural(count, name) {
-  if ((count % 10 == 2 || count % 10 == 3 || count % 10 == 4) && (count < 12 || count > 14)) {
-    let temp = inflectionWord('раз', 'gcaseRod');
-    return `Здравствуйте ${name}, вы вошли ${count} ${temp}`;
-  }
-  else {
-    let temp = inflectionWord('раз', 'gcaseIm');
-    return `Здравствуйте ${name}, вы вошли ${count} ${temp}`;
-  }
-}
 
-if (typeof exports === 'object') {
-  exports.plural = plural;
-}
+
+// function main() {
+//   var pageIndex = 0;
+//   var page = document.querySelector('.js-login');
+//
+//   let _getPageContent = () => {
+//     switch (pageIndex) {
+//       case 0:
+//         return Signin(this.updatePage);
+//       case 1:
+//         return Signup;
+//       case 2:
+//         return 'gfgfg';
+//       default:
+//         return 'Опачки а мы баг словили';
+//     }
+//   };
+//
+//   this.updatePage = index => {
+//     if (page.querySelector('div') === null)
+//       return;
+//     else {
+//       page.querySelector('div').remove();
+//       pageIndex = index;
+//       page.appendChild(_getPageContent());
+//     }
+//   };
+//
+//   this.render = () => {
+//     page.appendChild(_getPageContent());
+//   }
+// }
+//
+// var index = new main();
+// index.render();

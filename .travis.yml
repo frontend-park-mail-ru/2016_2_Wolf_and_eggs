@@ -11,3 +11,10 @@ deploy:
   app: wolfandeggs
   on:
     repo: utrobin/2016_2_Wolf_and_eggs
+  skip_cleanup: true
+script:
+  - npm run test
+  - npm run eslint
+install:
+  - npm install
+  - npm run webpack

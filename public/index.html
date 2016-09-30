@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Frontend privet</title>
-    <link rel="stylesheet" href="/css/reset.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
-    <script src="name.js"></script>
-    <script src="lib.js"></script>
-    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="/built/style.css"/>
 </head>
 <body>
-    <span id="name"></span>
-    <h1 id="welcome">Привет залогинься!</h1>
-    <form class="" action="/users" method="post" onsubmit="onSubmit(this); return false;">
-        <input required placeholder="email" type="email" name="email" value="">
-        <input required placeholder="name" type="text" name="user" value="">
-        <button>
-            Go
-        </button>
-    </form>
+    <div class="wrapper">
+        <div id="welcome" class="welcome z-depth-1">gfgfhghfghfghfghg</div>
+        <div class="zapros" hidden></div>
+        <div class="ban" hidden>Опачки ошибка</div>
+        <div class="js-login">
+        </div>
+        <script src="/built/bundle.js"></script>
+    </div>
 </body>
 </html>
