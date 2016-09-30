@@ -4,6 +4,7 @@ const form = new Form({
   el: document.createElement('div'),
   data: {
     title: 'Login',
+    url: '/api/signup',
     fields: [
       {
         name: 'login',

@@ -112,6 +112,23 @@ export default class Form {
     return temp;
   }
 
+  _onChange(event) {
+    const temp = event.target.name;
+
+    if (event.target.value === '' && this.initialRequeredFields[temp] === false) {
+      this.requeredFields[temp] = false;
+    }
+
+    if (event.target.value === '' && this.requeredFields[temp] === false) {
+      if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field error') {
+        this.requeredFields[temp] = false;
+        document.getElementsByName(`${temp}.P`)[0].className += ' error';
+      }
+    } else {
+      this.requeredFields[temp] = true;
+    }
+  }
+
   _onBlur(event) {
     const temp = event.target.name;
 
@@ -156,6 +173,7 @@ export default class Form {
       const obj = JSON.parse(result);
 
       if (typeof (obj.login) === 'undefined') {
+        document.querySelector('.ban').innerHTML = obj.reason;
         document.querySelector('.ban').hidden = false;
       } else {
         const count = obj.amount;
@@ -181,6 +199,7 @@ export default class Form {
         return;
       }
       elements[element].addEventListener('blur', this._onBlur.bind(this));
+      elements[element].addEventListener('change', this._onChange.bind(this));
       elements[element].addEventListener('focus', this._onFocus);
     });
   }
@@ -191,8 +210,11 @@ export default class Form {
     const fields = {};
 
     Object.keys(elements).forEach((element) => {
-      const name = elements[element].name;
+      let name = elements[element].name;
       const value = elements[element].value;
+
+      if (name === 'password1' || name === 'password2')
+        name = 'password';
 
       if (!name) {
         return;
