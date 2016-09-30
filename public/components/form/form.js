@@ -175,11 +175,19 @@ export default class Form {
       if (typeof (obj.login) === 'undefined') {
         document.querySelector('.ban').innerHTML = obj.reason;
         document.querySelector('.ban').hidden = false;
+
+
       } else {
-        const count = obj.amount;
-        const name = obj.login;
-        window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
-          ['раз', 'раза', 'раз'], 'rus')}`;
+        if(this.data.title === 'login') {
+          const count = obj.amount;
+          const name = obj.login;
+
+          window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
+            ['раз', 'раза', 'раз'], 'rus')}`;
+        }
+        else {
+          window.updatePage(0);
+        }
       }
     });
   }

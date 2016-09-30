@@ -3,7 +3,7 @@ import Form from '../../components/form/form';
 const form = new Form({
   el: document.createElement('div'),
   data: {
-    title: 'Login',
+    title: 'login',
     url: '/api/login',
     fields: [
       {
