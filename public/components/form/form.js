@@ -112,23 +112,6 @@ export default class Form {
     return temp;
   }
 
-  _onChange(event) {
-    const temp = event.target.name;
-
-    if (event.target.value === '' && this.initialRequeredFields[temp] === false) {
-      this.requeredFields[temp] = false;
-    }
-
-    if (event.target.value === '' && this.requeredFields[temp] === false) {
-      if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field error') {
-        this.requeredFields[temp] = false;
-        document.getElementsByName(`${temp}.P`)[0].className += ' error';
-      }
-    } else {
-      this.requeredFields[temp] = true;
-    }
-  }
-
   _onBlur(event) {
     const temp = event.target.name;
 
@@ -142,14 +125,16 @@ export default class Form {
         document.getElementsByName(`${temp}.P`)[0].className += ' error';
       }
     } else {
+      document.getElementsByName(`${temp}.P`)[0].className += 'input-field'
       this.requeredFields[temp] = true;
     }
   }
 
-  static _onFocus(event) {
+  _onFocus(event) {
+    console.log('gfhgbjsfhbgjfsbgjfhg');
     const temp = event.target.name;
     if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field') {
-      document.getElementsByName(`${temp}.P`)[0].className += 'input-field';
+      document.getElementsByName(`${temp}.P`)[0].className = 'input-field';
     }
   }
 
@@ -203,8 +188,8 @@ export default class Form {
       if (!elements[element].name) {
         return;
       }
+      console.log('gfgfgf')
       elements[element].addEventListener('blur', this._onBlur.bind(this));
-      elements[element].addEventListener('change', this._onChange.bind(this));
       elements[element].addEventListener('focus', this._onFocus);
     });
   }

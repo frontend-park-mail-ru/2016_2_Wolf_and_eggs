@@ -31,14 +31,14 @@ page.appendChild(getPageContent());
 
 
 
-// function main() {
+// function Main() {
 //   var pageIndex = 0;
 //   var page = document.querySelector('.js-login');
 //
 //   let _getPageContent = () => {
 //     switch (pageIndex) {
 //       case 0:
-//         return Signin(this.updatePage);
+//         return Signin(() => { this.updatePage() });
 //       case 1:
 //         return Signup;
 //       case 2:
@@ -63,5 +63,5 @@ page.appendChild(getPageContent());
 //   }
 // }
 //
-// var index = new main();
+// var index = new Main();
 // index.render();
