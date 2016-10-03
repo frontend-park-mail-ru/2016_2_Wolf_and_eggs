@@ -1,6 +1,3 @@
-/**
- * Created by utrobin on 02.10.16.
- */
 EnemyTank = function (index, game, player, bullets) {
 
   var x = game.world.randomX;
