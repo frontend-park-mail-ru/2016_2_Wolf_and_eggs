@@ -30,15 +30,20 @@ const form = new Form({
   },
 });
 
-const Signin = document.createElement('div');
-Signin.appendChild(form.el);
+function Signin() {
+  const formSignin = document.createElement('div');
+  formSignin.appendChild(form.el);
 
-const temp = document.createElement('div');
-temp.innerHTML = `
+  const temp = document.createElement('div');
+  temp.innerHTML = `
   <div class="link-signup z-depth-1">
-    <span>New to Outlive? <a onclick="updatePage(1)">Create an account.</a></span>
+    <span>New to Outlive? <a onclick="this.updatePage(1)">Create an account.</a></span>
   </div>
  `;
-Signin.appendChild(temp);
+  formSignin.appendChild(temp);
+
+  console.log(this);
+  return formSignin
+}
 
 export default Signin;
