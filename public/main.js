@@ -45,3 +45,5 @@ class Main {
 
 const index = new Main();
 index.render();
+
+export default index;

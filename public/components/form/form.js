@@ -1,5 +1,6 @@
 import Button from '../button/button';
 import plural from '../../plural';
+import index from '../../main';
 import { jsonRequest } from '../../libs/requests';
 
 export default class Form {
@@ -99,7 +100,7 @@ export default class Form {
           window.welcome.innerHTML = `<span>Привет, ${name}. Ты зашел ${count} ${plural(count,
             ['раз', 'раза', 'раз'], 'rus')}</span>`;
         } else {
-          window.updatePage(0);
+          index.updatePage(0);
         }
       }
     });
