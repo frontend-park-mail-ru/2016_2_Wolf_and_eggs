@@ -43,7 +43,6 @@ const form = new Form({
 });
 
 function signup() {
-  let self = this;
   const formSignup = document.createElement('div');
   formSignup.appendChild(form.el);
 
@@ -53,7 +52,7 @@ function signup() {
     <span><a class="link1">Вернуться назад</a></span>
   </div>
  `;
-  temp1.querySelector('.link1').addEventListener('click', () => { self.updatePage(0) });
+  temp1.querySelector('.link1').addEventListener('click', () => { this.updatePage(0); });
   formSignup.appendChild(temp1);
 
   return formSignup;

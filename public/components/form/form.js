@@ -13,8 +13,8 @@ export default class Form {
   }
 
   _addError() {
-    let formData = this._getFormData();
-    let fields = Object.keys(this.requeredFields);
+    const formData = this._getFormData();
+    const fields = Object.keys(this.requeredFields);
 
     for (let i = 0; i < fields.length; i += 1) {
       const temp = fields[i];
@@ -33,11 +33,10 @@ export default class Form {
       this.el.querySelector('.ui-error').style.display = 'block';
       return false;
     }
-    else {
-      this.el.querySelector('.ui-error').innerHTML = '';
-      this.el.querySelector('.ui-error').style.display = 'none';
-      return true;
-    }
+
+    this.el.querySelector('.ui-error').innerHTML = '';
+    this.el.querySelector('.ui-error').style.display = 'none';
+    return true;
   }
 
   _onBlur(event) {
@@ -57,14 +56,13 @@ export default class Form {
   }
 
   _checkFill() {
-    let formData = this._getFormData();
+    const formData = this._getFormData();
     return Object.keys(formData).every((element) => {
       if (formData[element] === '' && this.requeredFields[element] === true) {
-        return false
+        return false;
       }
-      else {
-        return true
-      }
+
+      return true;
     });
   }
 
@@ -72,14 +70,14 @@ export default class Form {
     this.el.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      let compare = this._comparePassword();
+      const compare = this._comparePassword();
 
       if (this._checkFill() === false || compare === false) {
         this._addError();
         return;
       }
 
-      let formData = this._getFormData();
+      const formData = this._getFormData();
 
       if (formData.password1 !== undefined) {
         formData.password = formData.password1;
@@ -113,7 +111,7 @@ export default class Form {
     const fields = {};
 
     Object.keys(elements).forEach((element) => {
-      let name = elements[element].name;
+      const name = elements[element].name;
       const value = elements[element].value;
 
       if (!name) {

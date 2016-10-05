@@ -31,7 +31,6 @@ const form = new Form({
 });
 
 function signin() {
-  let self = this;
   const formSignin = document.createElement('div');
   formSignin.appendChild(form.el);
 
@@ -41,7 +40,7 @@ function signin() {
     <span>New to Outlive? <a class="link1">Create an account.</a></span>
   </div>
  `;
-  temp1.querySelector('.link1').addEventListener('click', () => { self.updatePage(1) });
+  temp1.querySelector('.link1').addEventListener('click', () => { this.updatePage(1); });
   formSignin.appendChild(temp1);
 
   const temp2 = document.createElement('div');
@@ -50,7 +49,7 @@ function signin() {
     <span><a class="link2">Go game</a></span>
   </div>
  `;
-  temp2.querySelector('.link2').addEventListener('click', () => { self.updatePage(2) });
+  temp2.querySelector('.link2').addEventListener('click', () => { this.updatePage(2); });
   formSignin.appendChild(temp2);
 
   return formSignin;
