@@ -10,7 +10,19 @@
     <!--<script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.js"></script>-->
 
     <!--<script src="/test.js"></script>-->
-
+    <script>
+        'use strict';
+        var foo = {
+            bar: function () {
+                setTimeout(
+                        function () {
+                            console.log(this)
+                        }
+                ), 1000
+            }
+        }
+        foo.bar();
+    </script>
     <link rel="stylesheet" href="/built/style.css"/>
 </head>
 <body>

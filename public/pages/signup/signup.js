@@ -42,8 +42,10 @@ const form = new Form({
   },
 });
 
-
-const Signup = document.createElement('div');
-Signup.appendChild(form.el);
+function Signup() {
+  const formSignup = document.createElement('div');
+  formSignup.appendChild(form.el);
+  return formSignup;
+}
 
 export default Signup;

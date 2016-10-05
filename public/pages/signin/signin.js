@@ -31,19 +31,18 @@ const form = new Form({
 });
 
 function Signin() {
+  let self = this;
   const formSignin = document.createElement('div');
   formSignin.appendChild(form.el);
-
   const temp = document.createElement('div');
   temp.innerHTML = `
   <div class="link-signup z-depth-1">
-    <span>New to Outlive? <a onclick="this.updatePage(1)">Create an account.</a></span>
+    <span>New to Outlive? <a class="link">Create an account.</a></span>
   </div>
  `;
+  temp.querySelector('.link').addEventListener('click', () => { self.updatePage(1) });
   formSignin.appendChild(temp);
-
-  console.log(this);
-  return formSignin
+  return formSignin;
 }
 
 export default Signin;
