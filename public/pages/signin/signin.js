@@ -30,19 +30,30 @@ const form = new Form({
   },
 });
 
-function Signin() {
+function signin() {
   let self = this;
   const formSignin = document.createElement('div');
   formSignin.appendChild(form.el);
-  const temp = document.createElement('div');
-  temp.innerHTML = `
+
+  const temp1 = document.createElement('div');
+  temp1.innerHTML = `
   <div class="link-signup z-depth-1">
-    <span>New to Outlive? <a class="link">Create an account.</a></span>
+    <span>New to Outlive? <a class="link1">Create an account.</a></span>
   </div>
  `;
-  temp.querySelector('.link').addEventListener('click', () => { self.updatePage(1) });
-  formSignin.appendChild(temp);
+  temp1.querySelector('.link1').addEventListener('click', () => { self.updatePage(1) });
+  formSignin.appendChild(temp1);
+
+  const temp2 = document.createElement('div');
+  temp2.innerHTML = `
+  <div class="link-signup z-depth-1">
+    <span><a class="link2">Go game</a></span>
+  </div>
+ `;
+  temp2.querySelector('.link2').addEventListener('click', () => { self.updatePage(2) });
+  formSignin.appendChild(temp2);
+
   return formSignin;
 }
 
-export default Signin;
+export default signin;

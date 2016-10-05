@@ -59,6 +59,9 @@ html, body {
 a{
   cursor: pointer;
 }
+a:hover{
+  color: #0274ab;
+}
 .input-field i{
   font-size: 13px;
   color: red;
@@ -78,4 +81,7 @@ a{
 }
 canvas{
   margin: auto;
+}
+span.redError{
+  color: red;
 }

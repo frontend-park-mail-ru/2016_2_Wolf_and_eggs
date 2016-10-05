@@ -1,40 +1,47 @@
-import Signin from './pages/signin/signin';
-import Signup from './pages/signup/signup';
+import signin from './pages/signin/signin';
+import signup from './pages/signup/signup';
+import game from './pages/game/game';
 
 require('./css/reset.css');
 require('./css/main.scss');
 
-function Main() {
-  this._pageIndex = 0;
-  this._page = document.querySelector('.js-login');
-}
-
-Main.prototype.render = function() {
-  this._page.appendChild(this._getPageContent());
-};
-
-Main.prototype._getPageContent = function() {
-  switch (this._pageIndex) {
-    case 0:
-      return Signin.apply(this);
-    case 1:
-      return Signup.apply(this);
-    case 2:
-      return 'gfgfg';
-    default:
-      return 'Опачки а мы баг словили';
+class Main{
+  constructor() {
+    this._pageIndex = 0;
+    this._page = document.querySelector('.js-login');
   }
-};
 
-Main.prototype.updatePage = function(index) {
+  _getPageContent() {
+    switch (this._pageIndex) {
+      case 0:
+        return signin.apply(this);
+      case 1:
+        return signup.apply(this);
+      case 2:
+        return game();
+      default:
+        return 'Опачки а мы баг словили';
+    }
+  };
+
+  updatePage(index) {
     if (this._page.querySelector('div') === null)
       return;
     else {
-    this._page.querySelector('div').remove();
-    this._pageIndex = index;
+      this._page.querySelector('div').remove();
+      this._pageIndex = index;
+
+      let temp = this._getPageContent();
+      if (temp !== undefined) {
+        this._page.appendChild(this._getPageContent());
+      }
+    }
+  };
+
+  render() {
     this._page.appendChild(this._getPageContent());
-  }
-};
+  };
+}
 
 var index = new Main();
 index.render();

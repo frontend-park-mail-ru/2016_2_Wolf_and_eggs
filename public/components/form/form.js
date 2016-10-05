@@ -91,7 +91,7 @@ export default class Form {
       const obj = JSON.parse(result);
 
       if (typeof (obj.login) === 'undefined') {
-        window.welcome.innerHTML = `<span>${obj.reason}</span>`;
+        window.welcome.innerHTML = `<span class="redError">${obj.reason}</span>`;
         window.welcome.hidden = false;
       } else {
         if (this.data.title === 'login') {

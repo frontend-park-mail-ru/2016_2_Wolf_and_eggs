@@ -42,10 +42,21 @@ const form = new Form({
   },
 });
 
-function Signup() {
+function signup() {
+  let self = this;
   const formSignup = document.createElement('div');
   formSignup.appendChild(form.el);
+
+  const temp1 = document.createElement('div');
+  temp1.innerHTML = `
+  <div class="link-signup z-depth-1">
+    <span><a class="link1">Вернуться назад</a></span>
+  </div>
+ `;
+  temp1.querySelector('.link1').addEventListener('click', () => { self.updatePage(0) });
+  formSignup.appendChild(temp1);
+
   return formSignup;
 }
 
-export default Signup;
+export default signup;
