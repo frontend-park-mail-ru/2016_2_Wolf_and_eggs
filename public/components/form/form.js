@@ -3,12 +3,13 @@ import plural from '../../plural';
 import index from '../../main';
 import { jsonRequest } from '../../libs/requests';
 
+import './form.tmpl.xml';
+
 export default class Form {
 
   constructor(options = { data: {} }) {
     this.data = options.data;
     this.el = options.el;
-    this.count = 0;
     this.requeredFields = {};
     this.render();
   }
@@ -50,6 +51,8 @@ export default class Form {
   }
 
   _onFocus(event) {
+    console.log(this);
+
     const temp = event.target.name;
     if (this.el.querySelector(`.${temp}P`).className !== `input-field ${temp}`) {
       this.el.querySelector(`.${temp}P`).className = `input-field ${temp}P`;
@@ -169,18 +172,19 @@ export default class Form {
     const { fields = [] } = this.data;
 
     return fields.map((field) => {
-      this.count += 1;
       return `
         <div class="input-field ${field.name}P">
           <label for="${field.name}">${field.label}</label>
           <input type="${field.type}" tabindex="${this.count}" name="${field.name}">
-          <i>This field is requered</i>
+          <i>This field is required</i>
         </div>
       `;
     }).join(' ');
   }
 
   _updateHtml() {
+    console.log(this.data);
+
     this.el.innerHTML = `
     <div class="ui-error z-depth-1"></div>
     <form class="ui-form z-depth-1">

@@ -2,7 +2,7 @@ import signin from './pages/signin/signin';
 import signup from './pages/signup/signup';
 import game from './pages/game/game';
 
-require('./css/reset.css');
+import './css/reset.css';
 require('./css/main.scss');
 
 class Main {
