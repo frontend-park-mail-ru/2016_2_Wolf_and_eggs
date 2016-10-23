@@ -3,7 +3,7 @@ import signup from './pages/signup/signup';
 import game from './pages/game/game';
 
 import './css/reset.css';
-require('./css/main.scss');
+import './css/main.scss';
 
 class Main {
   constructor() {

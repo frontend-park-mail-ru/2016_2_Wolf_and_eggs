@@ -34,8 +34,12 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
+    "fest": "^0.12.1",
+    "fest-loader": "^1.1.0",
+    "jade": "^1.11.0",
     "materialize-css": "^0.97.7",
     "node-sass": "^3.10.0",
+    "pug-html-loader": "^1.0.9",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2"

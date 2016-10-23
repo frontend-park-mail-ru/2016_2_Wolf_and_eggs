@@ -3,8 +3,6 @@ import plural from '../../plural';
 import index from '../../main';
 import { jsonRequest } from '../../libs/requests';
 
-import './form.tmpl.xml';
-
 export default class Form {
 
   constructor(options = { data: {} }) {
@@ -183,8 +181,6 @@ export default class Form {
   }
 
   _updateHtml() {
-    console.log(this.data);
-
     this.el.innerHTML = `
     <div class="ui-error z-depth-1"></div>
     <form class="ui-form z-depth-1">
