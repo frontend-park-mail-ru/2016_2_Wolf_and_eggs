@@ -1,4 +1,5 @@
 import Form from '../../components/form/form';
+import View from '../../modules/view';
 
 const form = new Form({
   el: document.createElement('div'),
@@ -42,20 +43,13 @@ const form = new Form({
   },
 });
 
-function signup() {
-  const formSignup = document.createElement('div');
-  formSignup.appendChild(form.el);
+export default class Signup extends View {
+  constructor() {
+    super();
+  }
 
-  const temp1 = document.createElement('div');
-  temp1.innerHTML = `
-  <div class="link-signup z-depth-1">
-    <span><a class="link1">Вернуться назад</a></span>
-  </div>
- `;
-  temp1.querySelector('.link1').addEventListener('click', () => { this.updatePage(0); });
-  formSignup.appendChild(temp1);
-
-  return formSignup;
+  init() {
+    this._el.appendChild(form.el);
+    document.querySelector('.main').appendChild(this._el);
+  }
 }
-
-export default signup;
