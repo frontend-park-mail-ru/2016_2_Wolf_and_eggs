@@ -3,6 +3,9 @@ import plural from '../../plural';
 import index from '../../main';
 import { jsonRequest } from '../../libs/requests';
 
+import template from './form.tmpl.xml';
+console.log('ЕГор');
+
 export default class Form {
 
   constructor(options = { data: {} }) {

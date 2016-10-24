@@ -16,6 +16,10 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             }, {
+                test: /\.xml$/,
+                exclude: /node_modules/,
+                loader: 'fest-loader',
+            }, {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract("style", "css")
             }, {
