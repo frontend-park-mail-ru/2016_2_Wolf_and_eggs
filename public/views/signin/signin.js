@@ -1,7 +1,6 @@
 import Form from '../../components/form/form';
 import View from '../../modules/view';
 
-
 const form = new Form({
   el: document.createElement('div'),
   data: {
@@ -54,6 +53,7 @@ export default class Signin extends View {
         <span><a class="link2">Go game</a></span>
       </div>
      `;
+    temp2.querySelector('.link2').addEventListener('click', this.showGame.bind(this) );
 
     this._el.appendChild(temp1);
     this._el.appendChild(temp2);
@@ -62,7 +62,10 @@ export default class Signin extends View {
   }
 
   showAppForm() {
-    console.log('gfgfg');
     this.router.go('/signup');
+  }
+
+  showGame() {
+    this.router.go('/game');
   }
 }

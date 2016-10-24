@@ -7,12 +7,12 @@ html, body {
 .wrapper{
   width: 1000px;
   margin: auto;
-  margin-top: 80px;
 }
 .ui-form{
   width: 350px;
   padding: 15px;
   margin: auto;
+  margin-top: 25px;
   border-radius: 2px;
 }
 .js-login{
@@ -28,7 +28,28 @@ html, body {
   background-color: #fcdede;
   border-color: #d2b2b2;
   text-align: center;
+  margin-top: 25px;
   display: none;
+}
+.ui-message{
+  width: 350px;
+  margin: auto;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  text-align: center;
+  margin-top: 25px;
+  display: none;
+
+  &_normal{
+    padding: 15px;
+    display: block;
+  }
+  &_error{
+    padding: 15px;
+    color: #911;
+    background-color: #fcdede;
+    display: block;
+  }
 }
 .ui-button{
   margin-top: 15px;

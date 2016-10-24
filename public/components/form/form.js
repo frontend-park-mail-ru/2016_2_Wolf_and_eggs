@@ -91,15 +91,19 @@ export default class Form {
       const obj = JSON.parse(result);
 
       if (typeof (obj.login) === 'undefined') {
-        window.welcome.innerHTML = `<span class="redError">${obj.reason}</span>`;
-        window.welcome.hidden = false;
+        this.el.querySelector('.ui-message').innerHTML = `<span class="ui-message_error">${obj.reason}</span>`;
+        this.el.querySelector('.ui-message').setAttribute('style', 'display: block;')
       } else {
         if (this.data.title === 'login') {
           const count = obj.amount;
           const name = obj.login;
 
-          window.welcome.innerHTML = `<span>Привет, ${name}. Ты зашел ${count} ${plural(count,
-            ['раз', 'раза', 'раз'], 'rus')}</span>`;
+          this.el.querySelector('.ui-message').innerHTML = `
+            <span class="ui-message_normal">
+              Привет, ${name}. Ты зашел ${count} ${plural(count, ['раз', 'раза', 'раз'], 'rus')}
+            </span>
+          `;
+          this.el.querySelector('.ui-message').setAttribute('style', 'display: block;')
         } else {
           index.updatePage(0);
         }
@@ -182,6 +186,7 @@ export default class Form {
 
   _updateHtml() {
     this.el.innerHTML = `
+    <div class="ui-message z-depth-1"></div>
     <div class="ui-error z-depth-1"></div>
     <form class="ui-form z-depth-1">
       <div>
@@ -197,6 +202,6 @@ export default class Form {
     this._updateHtml();
     this._installControls();
     this._getFieldsRequered();
-    this._addEvents();
+    this._addEvents()
   }
 }

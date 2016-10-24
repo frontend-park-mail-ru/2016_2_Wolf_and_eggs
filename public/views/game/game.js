@@ -1,4 +1,6 @@
-export default function game() {
+import View from '../../modules/view';
+
+function game() {
   window.EnemyTank = function (index, game, player, bullets) {
 
     var x = game.world.randomX;
@@ -77,7 +79,7 @@ export default function game() {
 
   };
 
-  var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+  var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render });
 
   function preload () {
 
@@ -308,4 +310,17 @@ export default function game() {
   function render () {
     game.debug.text('Enemies: ' + enemiesAlive + ' / ' + enemiesTotal, 32, 32);
   }
+}
+
+export default class Game extends View {
+  constructor() {
+    super();
+  }
+
+  init() {
+    const element = document.createElement('div');
+    element.id = 'game';
+    game();
+  }
+
 }

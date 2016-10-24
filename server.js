@@ -4,6 +4,7 @@ let parser = require('body-parser');
 let app = express();
 
 app.use('/', express.static('public'));
+app.use('/game', express.static('public'));
 app.use('/signup', express.static('public'));
 
 app.use(parser.json());
