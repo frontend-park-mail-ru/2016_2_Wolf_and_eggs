@@ -1,0 +1,9 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <a class="button_dart">
+        <span class="button_dart_btn">
+            <span class="button_dart_text">
+                <fest:value>data</fest:value>
+            </span>
+        </span>
+    </a>
+</fest:template>

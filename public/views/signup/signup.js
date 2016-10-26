@@ -50,6 +50,6 @@ export default class Signup extends View {
 
   init() {
     this._el.appendChild(form.el);
-    document.querySelector('.main').appendChild(this._el);
+    document.querySelector('.content').appendChild(this._el);
   }
 }

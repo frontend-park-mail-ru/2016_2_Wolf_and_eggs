@@ -1,6 +1,6 @@
 import Button from '../button/button';
 import plural from '../../plural';
-import index from '../../main';
+import index from '../../index';
 import { jsonRequest } from '../../libs/requests';
 
 export default class Form {

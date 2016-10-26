@@ -318,8 +318,8 @@ export default class Game extends View {
   }
 
   init() {
-    const element = document.createElement('div');
-    element.id = 'game';
+    this._el.innerHTML = `<div id="game"></div>`;
+    document.querySelector('.content').appendChild(this._el);
     game();
   }
 

@@ -53,7 +53,6 @@ export default class Router {
 	 * @param {Object} [state={}] - Объект state, который передаётся в вызов метода navigate
 	 */
 	onroute(pathname, state = {}) {
-		console.log(this.routes);
 		let route = this.routes.find(route => route.match(pathname));
 		if (!route) {
 			return;

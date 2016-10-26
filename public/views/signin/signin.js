@@ -38,34 +38,7 @@ export default class Signin extends View {
 
   init() {
     this._el.appendChild(form.el);
-
-    const temp1 = document.createElement('div');
-    temp1.innerHTML = `
-      <div class="link-signup z-depth-1">
-        <span>New to Outlive? <a class="link1">Create an account.</a></span>
-      </div>
-     `;
-    temp1.querySelector('.link1').addEventListener('click', this.showAppForm.bind(this) );
-
-    const temp2 = document.createElement('div');
-    temp2.innerHTML = `
-      <div class="link-signup z-depth-1">
-        <span><a class="link2">Go game</a></span>
-      </div>
-     `;
-    temp2.querySelector('.link2').addEventListener('click', this.showGame.bind(this) );
-
-    this._el.appendChild(temp1);
-    this._el.appendChild(temp2);
-
-    document.querySelector('.main').appendChild(this._el);
+    document.querySelector('.content').appendChild(this._el);
   }
 
-  showAppForm() {
-    this.router.go('/signup');
-  }
-
-  showGame() {
-    this.router.go('/game');
-  }
 }

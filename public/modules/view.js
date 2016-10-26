@@ -45,7 +45,7 @@ export default  class View {
 	 * @param {Object} [options={}] - Объект с параметрами
 	 */
 	show(options = {}) {
-		this._el.hidden = false;
+		this._el.setAttribute('style', 'display: block;');
 	}
 
 	/**
@@ -53,7 +53,7 @@ export default  class View {
 	 * @param {Object} [options={}] - Объект с параметрами
 	 */
 	hide(options = {}) {
-		this._el.hidden = true;
+		this._el.setAttribute('style', 'display: none;')
 	}
 
 	/**
