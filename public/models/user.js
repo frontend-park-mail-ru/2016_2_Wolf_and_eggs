@@ -21,8 +21,12 @@ export default class User extends Model {
     }
   }
 
-  get url() {
+  get urlLogin() {
     return '/api/login';
+  }
+
+  get urlSignup() {
+    return '/api/signup';
   }
 
   _comparePassword(formData) {
@@ -35,7 +39,7 @@ export default class User extends Model {
   }
 
   login(formData, addMessageError, addMessage) {
-    const result = jsonRequest(this.url, formData);
+    const result = jsonRequest(this.urlLogin, formData);
     const obj = JSON.parse(result);
 
     if (typeof (obj.login) === 'undefined') {
@@ -64,14 +68,14 @@ export default class User extends Model {
       delete formData.password2;
     }
 
-    const result = jsonRequest(this.url, formData);
+    const result = jsonRequest(this.urlSignup, formData);
     const obj = JSON.parse(result);
 
     if (typeof (obj.login) === 'undefined') {
       addMessage('', false);
       addMessageError(obj.reason, true);
     } else {
-      console.log(obg);
+      console.log(obj);
     }
   }
 
