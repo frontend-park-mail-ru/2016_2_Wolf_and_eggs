@@ -10,6 +10,8 @@ export default class User extends Model {
   constructor(attributes) {
     super(attributes);
     this.user = this.defaults;
+
+    this.signup = this.signup.bind(this);
   }
 
   get defaults() {
