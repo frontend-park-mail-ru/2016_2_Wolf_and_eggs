@@ -2,7 +2,6 @@ import Form from '../../components/form/form';
 import View from '../../modules/view';
 import User from '../../models/user';
 
-
 let user = new User();
 
 const form = new Form({

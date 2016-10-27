@@ -1,6 +1,9 @@
 import Form from '../../components/form/form';
 import View from '../../modules/view';
+import User from '../../models/user';
 
+
+let user = new User();
 const form = new Form({
   el: document.createElement('div'),
   data: {
@@ -41,6 +44,7 @@ const form = new Form({
       },
     ],
   },
+  action: user.signup
 });
 
 export default class Signup extends View {

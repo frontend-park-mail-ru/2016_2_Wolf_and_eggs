@@ -61,6 +61,16 @@ export default class User extends Model {
       delete formData.password1;
       delete formData.password2;
     }
+
+    const result = jsonRequest(this.url, formData);
+    const obj = JSON.parse(result);
+
+    if (typeof (obj.login) === 'undefined') {
+      addMessage('', false);
+      addMessageError(obj.reason, true);
+    } else {
+      console.log(obg);
+    }
   }
 
 }
