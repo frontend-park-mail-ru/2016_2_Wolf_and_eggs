@@ -14,13 +14,13 @@ const form = new Form({
         name: 'login',
         type: 'text',
         label: 'Username',
-        required: false,
+        required: true,
       },
       {
         name: 'email',
         type: 'email',
         label: 'Email',
-        required: true,
+        required: false,
       },
       {
         name: 'password1',

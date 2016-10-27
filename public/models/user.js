@@ -12,6 +12,7 @@ export default class User extends Model {
     this.user = this.defaults;
 
     this.signup = this.signup.bind(this);
+    this.login = this.login.bind(this);
   }
 
   get defaults() {
@@ -39,6 +40,7 @@ export default class User extends Model {
   }
 
   login(formData, addMessageError, addMessage) {
+    console.log(this.urlLogin, formData, this);
     const result = jsonRequest(this.urlLogin, formData);
     const obj = JSON.parse(result);
 
