@@ -2,10 +2,8 @@ import Form from '../../components/form/form';
 import View from '../../modules/view';
 import User from '../../models/user';
 
-
 let user = new User();
 const form = new Form({
-  el: document.createElement('div'),
   data: {
     title: 'signup',
     url: '/api/signup',
@@ -44,7 +42,7 @@ const form = new Form({
       },
     ],
   },
-  action: user.signup
+  action: user.signup,
 });
 
 export default class Signup extends View {
@@ -53,7 +51,7 @@ export default class Signup extends View {
   }
 
   init() {
-    this._el.appendChild(form.el);
+    form.renderTo(this._el);
     document.querySelector('.content').appendChild(this._el);
   }
 }

@@ -1,7 +1,7 @@
 /**
  * Класс представляет собой view
  */
-export default  class View {
+export default class View {
 	/**
 	 * Создаёт новую view
 	 * @param {Object} [options={}] - Объект с параметрами

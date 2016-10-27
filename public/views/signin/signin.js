@@ -5,8 +5,6 @@ import User from '../../models/user';
 let user = new User();
 
 const form = new Form({
-  name: 'login',
-  el: document.createElement('div'),
   data: {
     title: 'login',
     fields: [
@@ -41,7 +39,7 @@ export default class Signin extends View {
   }
 
   init() {
-    this._el.appendChild(form.el);
+    form.renderTo(this._el);
     document.querySelector('.content').appendChild(this._el);
   }
 

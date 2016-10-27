@@ -15,29 +15,12 @@ export default class Model {
     return '/';
   }
 
-  send(method, data = {}) {
-    return new Promise((resolve, reject) => {
-      let xhr = new XMLHttpRequest();
-      xhr.open(method, url, true);
-
-      xhr.onReadyStateChange = function () {
-        if (xhr.readyState === 4) {
-          resolve(xhr.responseText);
-        }
-      }
-
-      xhr.onerroe = function () {
-        reject();
-      }
-
+  send(url, data = {}, method = 'GET') {
+      const xhr = new XMLHttpRequest();
+      xhr.open(method, url, false);
+      xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify(data));
-    });
-  }
-
-  save() {
-    let method = this.attributes.id ? 'PUT' : 'POST';
-
-    return this.send(method, this.attributes);
+      return xhr.responseText;
   }
 
 }

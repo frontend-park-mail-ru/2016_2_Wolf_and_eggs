@@ -2,8 +2,8 @@
  * Created by utrobin on 27.10.16.
  */
 import Model from './Model';
-import plural from '../plural';
-import { jsonRequest } from '../libs/requests';
+import plural from '../tools/plural';
+import router from '../index';
 
 export default class User extends Model {
 
@@ -41,7 +41,7 @@ export default class User extends Model {
 
   login(formData, addMessageError, addMessage) {
     console.log(this.urlLogin, formData, this);
-    const result = jsonRequest(this.urlLogin, formData);
+    const result = this.send(this.urlLogin, formData, 'POST');
     const obj = JSON.parse(result);
 
     if (typeof (obj.login) === 'undefined') {
@@ -70,14 +70,14 @@ export default class User extends Model {
       delete formData.password2;
     }
 
-    const result = jsonRequest(this.urlSignup, formData);
+    const result = this.send(this.urlSignup, formData, 'POST');
     const obj = JSON.parse(result);
 
     if (typeof (obj.login) === 'undefined') {
       addMessage('', false);
       addMessageError(obj.reason, true);
     } else {
-      console.log(obj);
+      router.go('/');
     }
   }
 

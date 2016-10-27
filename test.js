@@ -1,5 +1,5 @@
-import plural from './public/plural';
-import matFilter from './public/filter';
+import plural from './public/tools/plural';
+import matFilter from './public/tools/filter';
 
 const assert = require('assert');
 

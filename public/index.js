@@ -7,10 +7,13 @@ import Game from './views/game/game';
 import './css/reset.css';
 import './css/style.scss';
 
-(new Router)
+let router = new Router();
+
+router
   .addRoute('/game', Game)
   .addRoute('/signup', Signup)
   .addRoute('/signin', Signin)
   .addRoute('/', Main)
   .start();
 
+export default router;

@@ -1,10 +1,11 @@
 import Button from '../button/button';
+import Block from '../block/block';
 
-export default class Form {
+export default class Form extends Block{
 
   constructor(options = { data: {} }) {
+    super('div');
     this.data = options.data;
-    this.el = options.el;
     this.action = options.action;
     this.requeredFields = {};
     this.render();
@@ -17,44 +18,44 @@ export default class Form {
     for (let i = 0; i < fields.length; i += 1) {
       const temp = fields[i];
       if (this.requeredFields[temp] === true && formData[temp] === '') {
-        this.el.querySelector(`.${temp}P`).className = `input-field ${temp}P error`;
+        this._el.querySelector(`.${temp}P`).className = `input-field ${temp}P error`;
       }
     }
   }
 
   addMessageError(message, value) {
     if (value) {
-      this.el.querySelector('.ui-error').innerHTML = message;
-      this.el.querySelector('.ui-error').style.display = 'block';
+      this._el.querySelector('.ui-error').innerHTML = message;
+      this._el.querySelector('.ui-error').style.display = 'block';
     }
     else {
-      this.el.querySelector('.ui-error').innerHTML = '';
-      this.el.querySelector('.ui-error').style.display = 'none';
+      this._el.querySelector('.ui-error').innerHTML = '';
+      this._el.querySelector('.ui-error').style.display = 'none';
     }
   }
 
   addMessage(message, value) {
     if (value) {
-      this.el.querySelector('.ui-message').innerHTML = message;
-      this.el.querySelector('.ui-message').style.display = 'block';
+      this._el.querySelector('.ui-message').innerHTML = message;
+      this._el.querySelector('.ui-message').style.display = 'block';
     }
     else {
-      this.el.querySelector('.ui-message').innerHTML = '';
-      this.el.querySelector('.ui-message').style.display = 'none';
+      this._el.querySelector('.ui-message').innerHTML = '';
+      this._el.querySelector('.ui-message').style.display = 'none';
     }
   }
 
   _onBlur(event) {
     const temp = event.target;
     if (temp.value === '' && this.requeredFields[temp.name] === true) {
-      this.el.querySelector(`.${temp.name}P`).className = `input-field ${temp.name}P error`;
+      this._el.querySelector(`.${temp.name}P`).className = `input-field ${temp.name}P error`;
     }
   }
 
   _onFocus(event) {
     const temp = event.target.name;
-    if (this.el.querySelector(`.${temp}P`).className !== `input-field ${temp}`) {
-      this.el.querySelector(`.${temp}P`).className = `input-field ${temp}P`;
+    if (this._el.querySelector(`.${temp}P`).className !== `input-field ${temp}`) {
+      this._el.querySelector(`.${temp}P`).className = `input-field ${temp}P`;
     }
   }
 
@@ -70,7 +71,7 @@ export default class Form {
   }
 
   _onSubmit() {
-    this.el.addEventListener('submit', (event) => {
+    this._el.addEventListener('submit', (event) => {
       event.preventDefault();
 
       if (this._checkFill() === false) {
@@ -84,7 +85,7 @@ export default class Form {
   }
 
   _getFormData() {
-    const form = this.el.querySelector('form');
+    const form = this._el.querySelector('form');
     const elements = form.elements;
     const fields = {};
 
@@ -102,14 +103,10 @@ export default class Form {
     return fields;
   }
 
-  on(type, callback) {
-    this.el.addEventListener(type, callback);
-  }
-
   _addEvents() {
     this._onSubmit();
 
-    const form = this.el.querySelector('form');
+    const form = this._el.querySelector('form');
     const elements = form.elements;
 
     Object.keys(elements).forEach((element) => {
@@ -138,7 +135,7 @@ export default class Form {
 
     controls.forEach((data) => {
       const control = new Button({ text: data.text }).render();
-      this.el.querySelector('.js-controls').appendChild(control.el);
+      this._el.querySelector('.js-controls').appendChild(control.el);
     });
   }
 
@@ -157,7 +154,7 @@ export default class Form {
   }
 
   _updateHtml() {
-    this.el.innerHTML = `
+    this._el.innerHTML = `
     <div class="ui-message z-depth-1"></div>
     <div class="ui-error z-depth-1"></div>
     <form class="ui-form z-depth-1">

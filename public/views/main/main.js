@@ -8,7 +8,6 @@ import './main.scss';
 import './main.tmpl.xml';
 import path from '../../tools/getPath';
 
-
 export default class Main extends View {
   constructor() {
     super();
