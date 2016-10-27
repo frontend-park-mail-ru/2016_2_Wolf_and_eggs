@@ -1,11 +1,15 @@
 import Form from '../../components/form/form';
 import View from '../../modules/view';
+import User from '../../models/user';
+
+
+let user = new User();
 
 const form = new Form({
+  name: 'login',
   el: document.createElement('div'),
   data: {
     title: 'login',
-    url: '/api/login',
     fields: [
       {
         name: 'login',
@@ -29,6 +33,7 @@ const form = new Form({
       },
     ],
   },
+  action: user.login
 });
 
 export default class Signin extends View {

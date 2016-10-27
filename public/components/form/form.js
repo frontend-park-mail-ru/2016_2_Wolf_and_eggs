@@ -1,18 +1,16 @@
 import Button from '../button/button';
-import plural from '../../plural';
-import index from '../../index';
-import { jsonRequest } from '../../libs/requests';
 
 export default class Form {
 
   constructor(options = { data: {} }) {
     this.data = options.data;
     this.el = options.el;
+    this.action = options.action;
     this.requeredFields = {};
     this.render();
   }
 
-  _addError() {
+  _addClassError() {
     const formData = this._getFormData();
     const fields = Object.keys(this.requeredFields);
 
@@ -24,24 +22,29 @@ export default class Form {
     }
   }
 
-  _comparePassword() {
-    const formData = this._getFormData();
-
-    if (formData.password1 !== undefined && formData.password1 !== formData.password2
-                                            && formData.password1 !== '' && formData.password2 !== '') {
-      this.el.querySelector('.ui-error').innerHTML = 'Пароли не совпадают';
+  addMessageError(message, value) {
+    if (value) {
+      this.el.querySelector('.ui-error').innerHTML = message;
       this.el.querySelector('.ui-error').style.display = 'block';
-      return false;
     }
+    else {
+      this.el.querySelector('.ui-error').innerHTML = '';
+      this.el.querySelector('.ui-error').style.display = 'none';
+    }
+  }
 
-    this.el.querySelector('.ui-error').innerHTML = '';
-    this.el.querySelector('.ui-error').style.display = 'none';
-    return true;
+  addMessage(message, value) {
+    if (value) {
+      this.el.querySelector('.ui-message').innerHTML = message;
+      this.el.querySelector('.ui-message').style.display = 'block';
+    }
+    else {
+      this.el.querySelector('.ui-message').innerHTML = '';
+      this.el.querySelector('.ui-message').style.display = 'none';
+    }
   }
 
   _onBlur(event) {
-    this._comparePassword();
-
     const temp = event.target;
     if (temp.value === '' && this.requeredFields[temp.name] === true) {
       this.el.querySelector(`.${temp.name}P`).className = `input-field ${temp.name}P error`;
@@ -49,8 +52,6 @@ export default class Form {
   }
 
   _onFocus(event) {
-    console.log(this);
-
     const temp = event.target.name;
     if (this.el.querySelector(`.${temp}P`).className !== `input-field ${temp}`) {
       this.el.querySelector(`.${temp}P`).className = `input-field ${temp}P`;
@@ -72,42 +73,13 @@ export default class Form {
     this.el.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      const compare = this._comparePassword();
-
-      if (this._checkFill() === false || compare === false) {
-        this._addError();
+      if (this._checkFill() === false) {
+        this._addClassError();
         return;
       }
 
       const formData = this._getFormData();
-
-      if (formData.password1 !== undefined) {
-        formData.password = formData.password1;
-        delete formData.password1;
-        delete formData.password2;
-      }
-
-      const result = jsonRequest(this.data.url, formData);
-      const obj = JSON.parse(result);
-
-      if (typeof (obj.login) === 'undefined') {
-        this.el.querySelector('.ui-message').innerHTML = `<span class="ui-message_error">${obj.reason}</span>`;
-        this.el.querySelector('.ui-message').setAttribute('style', 'display: block;')
-      } else {
-        if (this.data.title === 'login') {
-          const count = obj.amount;
-          const name = obj.login;
-
-          this.el.querySelector('.ui-message').innerHTML = `
-            <span class="ui-message_normal">
-              Привет, ${name}. Ты зашел ${count} ${plural(count, ['раз', 'раза', 'раз'], 'rus')}
-            </span>
-          `;
-          this.el.querySelector('.ui-message').setAttribute('style', 'display: block;')
-        } else {
-          index.updatePage(0);
-        }
-      }
+      this.action(formData, this.addMessageError.bind(this), this.addMessage.bind(this))
     });
   }
 
@@ -204,4 +176,5 @@ export default class Form {
     this._getFieldsRequered();
     this._addEvents()
   }
+
 }
