@@ -9,7 +9,7 @@ export default class User extends Model {
 
   constructor(attributes) {
     super(attributes);
-    this.user = this.defaults;
+    this.user = attributes || this.defaults;
 
     this.signup = this.signup.bind(this);
     this.login = this.login.bind(this);

@@ -5,7 +5,7 @@ export default class collectionUser extends Model {
 
   constructor(attributes) {
     super(attributes);
-    this.data = {};
+    this.data = [];
     this.numberPage = 0;
 
     // this.signup = this.signup.bind(this);
@@ -19,14 +19,11 @@ export default class collectionUser extends Model {
     const result = this.send(this.urlScorebord, {page: this.numberPage}, 'GET');
     const obj = JSON.parse(result);
 
+    obj.forEach(value => {
+      this.data.push(new User(value));
+    });
 
-    console.log(obj);
-
-    if (typeof (obj.login) === 'undefined') {
-      console.log(obj)
-    } else {
-      console.log(obj)
-    }
+    console.log(obj, this.data);
   }
 
 }
