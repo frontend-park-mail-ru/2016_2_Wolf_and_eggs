@@ -12,17 +12,16 @@
     margin: auto;
     position: relative;
   }
+}
 
-  &__menu {
-    width: 250px;
-    position: absolute;
-    display: block;
-    right: 100px;
-    top: calc(50vh - 125px);
-  }
+.menu {
+  width: 250px;
+  position: absolute;
+  display: block;
+  right: 100px;
+  top: calc(50vh - 125px);
 
-  &__menu .button{
+  & .button {
     margin-bottom: 15px;
   }
-
 }

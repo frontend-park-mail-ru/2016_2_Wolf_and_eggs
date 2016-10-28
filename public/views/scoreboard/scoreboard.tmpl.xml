@@ -1,7 +1,25 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-        <div>
-            <fest:for iterate="data" index="i" value="field">
-                <fest:value>{field.user.login}</fest:value>
-            </fest:for>
-        </div>
+
+
+
+
+
+    <table border="1">
+        <caption>Рейтинг игроков</caption>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Score</th>
+        </tr>
+
+        <fest:for iterate="data" index="i" value="field">
+            <tr>
+                <th><fest:value>field.user.id</fest:value></th>
+                <th><fest:value>field.user.login</fest:value></th>
+                <th><fest:value>field.user.score</fest:value></th>
+            </tr>
+        </fest:for>
+
+
+    </table>
 </fest:template>

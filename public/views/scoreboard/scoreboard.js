@@ -11,12 +11,18 @@ export default class Scoreboard extends View {
   }
 
   init() {
-    let users = new collectionUser();
-    let data = users.getUsers();
+    // let users = new collectionUser();
+    // let data = users.getUsers();
 
-    console.log(data[0].User.user.login);
+    let button1 = new Button('Single Player', {style: 'dart'});
+
+    let ar = [{user: {login: 'gfgfgfgf'}}, {user: {login: 'гешпкоп', id: 'ffgfg', score: 'gfgf'}}];
+
+
+
+
     this._el.className = 'scoreboard';
-    this._el.innerHTML = window.fest[path + 'views/scoreboard/scoreboard.tmpl'](data);
+    this._el.innerHTML = window.fest[path + 'views/scoreboard/scoreboard.tmpl'](ar);
 
 
     document.querySelector('.content').appendChild(this._el);
