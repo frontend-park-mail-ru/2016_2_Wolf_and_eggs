@@ -15,12 +15,13 @@ export default class Scoreboard extends View {
   }
 
   addUsers() {
-    let {data, remainingPages = 10} = this.users.getUsers();
+    let {data, remainingPages = 10, numberPage} = this.users.getUsers();
 
     if (remainingPages <= 0) {
       this._el.querySelector('.button').setAttribute('style', 'display: none;');
     }
 
+    data.numberPage = (numberPage - 1) * 10 + 1;
     this._el.querySelector('.scoreboard__table').innerHTML += window.fest[path + 'views/scoreboard/users.tmpl'](data);
   }
 
