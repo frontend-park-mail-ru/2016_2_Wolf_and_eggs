@@ -23,7 +23,7 @@ export default class Scoreboard extends View {
 
     console.log(window.fest[path + 'views/scoreboard/users.tmpl'](data));
 
-    this._el.querySelector('.scoreboard__table').appendChild = window.fest[path + 'views/scoreboard/users.tmpl'](data);
+    this._el.querySelector('.scoreboard__table').appendChild(window.fest[path + 'views/scoreboard/users.tmpl'](data));
   }
 
   init() {
