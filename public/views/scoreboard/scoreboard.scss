@@ -17,8 +17,25 @@
 .table {
   width: 600px;
   display: block;
+  margin: auto;
 
   & .button {
-    margin-bottom: 15px;
+    width: 300px;
+  }
+
+  & th, & th{
+    width: 50%;
+    padding: 20px;
+    text-align: left;
+  }
+  & tr:nth-child(2n){
+    background-color: rgba(89, 0, 89, 0.3);
+  }
+  & th:nth-child(2n - 1){
+    color: #777;
+  }
+  & th:nth-child(2n){
+    font-weight: 500;
+    color: #000;
   }
 }
