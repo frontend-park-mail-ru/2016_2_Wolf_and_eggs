@@ -32,6 +32,7 @@
     font-size: 28px;
     color: white;
     margin-bottom: 15px;
+    border-radius: 5px 5px 0 0;
   }
 
   & th{
@@ -49,7 +50,8 @@
   & th:nth-child(2n){
     font-weight: 500;
   }
-  &__titles{
-    background-color: rgba(155, 13, 6, 0.3);
-  }
+
+}
+tr.table__titles{
+  background-color: rgba(155, 13, 6, 0.3);
 }
