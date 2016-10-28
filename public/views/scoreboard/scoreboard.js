@@ -21,7 +21,7 @@ export default class Scoreboard extends View {
     }
 
     data.numberPage = (numberPage - 2) * 10 + 1;
-    this._el.querySelector('.scoreboard__table').innerHTML += window.fest[path + 'views/scoreboard/users.tmpl'](data);
+    this._el.querySelector('.table').innerHTML += window.fest[path + 'views/scoreboard/users.tmpl'](data);
   }
 
   init() {
