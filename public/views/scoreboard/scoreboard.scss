@@ -28,6 +28,11 @@
   margin-bottom: 25px;
   color: #fff;
 
+  & tbody tr:hover {
+    background: #f3bd48; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+  }
+
   &__caption{
     font-size: 28px;
     color: white;
@@ -52,6 +57,6 @@
   }
 
 }
-tr.table__titles{
-  background-color: rgba(155, 13, 6, 0.3);
+.table__titles{
+  background-color: rgba(155, 13, 6, 0.3)!important;
 }
