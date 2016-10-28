@@ -2,6 +2,7 @@ import View from '../../modules/view';
 import Button from '../../components/newButton/button'
 import collectionUser from '../../models/collectionUser';
 
+import './scoreboard.scss';
 import './scoreboard.tmpl.xml';
 import './users.tmpl.xml';
 import path from '../../tools/getPath';
@@ -10,8 +11,6 @@ export default class Scoreboard extends View {
   constructor() {
     super();
     this.users = new collectionUser();
-
-    // this.addUsers = this.addUsers.bind(this);
   }
 
   addUsers() {
