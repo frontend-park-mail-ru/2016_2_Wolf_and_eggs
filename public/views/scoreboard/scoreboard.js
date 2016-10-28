@@ -32,7 +32,7 @@ export default class Scoreboard extends View {
     let button1 = new Button('Single Player', {style: 'dart'});
     button1.on('click', this.addUsers.bind(this));
 
-    this._el.querySelector('.scoreboard').appendChild(button1.render());
+    this._el.appendChild(button1.render());
     document.querySelector('.content').appendChild(this._el);
   }
 
