@@ -1,6 +1,3 @@
-/**
- * Created by utrobin on 25.09.16.
- */
 export default class Button {
   constructor(options) {
     this.text = options.text;

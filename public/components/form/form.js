@@ -1,226 +1,98 @@
 import Button from '../button/button';
-import plural from '../../plural';
-import { jsonRequest } from '../../libs/requests';
+import Block from '../block/block';
 
-export default class Form {
+import './form.tmpl.xml';
+import path from '../../tools/getPath';
+
+export default class Form extends Block {
 
   constructor(options = { data: {} }) {
+    super('div');
     this.data = options.data;
-    this.el = options.el;
-    this.count = 0;
+    this.action = options.action;
     this.requeredFields = {};
-    this.initialRequeredFields = {};
     this.render();
   }
 
-  _getFieldsRequered() {
-    const { fields = [] } = this.data;
-    const FieldsRequered = {};
+  _addClassError() {
+    const formData = this._getFormData();
+    const fields = Object.keys(this.requeredFields);
 
-    fields.forEach((field) => {
-      if (field.required === true) {
-        FieldsRequered[field.name] = false;
-      } else {
-        FieldsRequered[field.name] = true;
-      }
-    });
-
-    this.requeredFields = FieldsRequered;
-
-    for (let i = 0; i < Object.keys(this.requeredFields).length; i += 1) {
-      this.initialRequeredFields[i] = this.requeredFields[i];
-    }
-  }
-
-  _isFilled() {
-    for (let i = 0; i < Object.keys(this.requeredFields).length; i += 1) {
-      if (this.requeredFields[Object.keys(this.requeredFields)[i]] === false) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  _getFields() {
-    const { fields = [] } = this.data;
-
-    return fields.map((field) => {
-      // let temp = '';
-      // if (this.count === 0) {
-      //   temp = 'autofocus';
-      // }
-      this.count += 1;
-      return `
-        <div class="input-field" name="${field.name}.P">
-          <label for="${field.name}">${field.label}</label>
-          <input type="${field.type}" tabindex="${this.count}" name="${field.name}">
-          <i>This field is requered</i>
-        </div>
-      `;
-    }).join(' ');
-  }
-
-  _updateHtml() {
-    this.el.innerHTML = `
-    <div class="ui-error z-depth-1">Пароли не совпадают</div>
-    <form class="ui-form z-depth-1">
-      <div>
-        ${this._getFields()}
-      </div>
-      <div class="js-controls">
-      </div>
-    <form>
-  `;
-  }
-
-  _installControls() {
-    const { controls = [] } = this.data;
-
-    controls.forEach((data) => {
-      const control = new Button({ text: data.text }).render();
-      this.el.querySelector('.js-controls').appendChild(control.el);
-    });
-  }
-
-  addError() {
-    for (let i = 0; i < Object.keys(this.requeredFields).length; i += 1) {
-      const temp = Object.keys(this.requeredFields)[i];
-      if (this.requeredFields[temp] === false) {
-        if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field error') {
-          document.getElementsByName(`${temp}.P`)[0].className += ' error';
-        }
+    for (let i = 0; i < fields.length; i += 1) {
+      const temp = fields[i];
+      if (this.requeredFields[temp] === true && formData[temp] === '') {
+        this._el.querySelector(`.${temp}P`).className = `input-field ${temp}P error`;
       }
     }
   }
 
-  _comparePassword() {
-    if (this.requeredFields.password2 === undefined) {
-      return true;
-    }
-    let temp = false;
-
-    const pas1 = document.getElementsByName('password1')[0].value;
-    const pas2 = document.getElementsByName('password2')[0].value;
-
-    if (pas1 === pas2) {
-      document.getElementsByClassName('ui-error')[0].style.display = 'none';
-      temp = true;
+  addMessageError(message, value) {
+    if (value) {
+      this._el.querySelector('.ui-error').innerHTML = message;
+      this._el.querySelector('.ui-error').style.display = 'block';
     } else {
-      document.getElementsByClassName('ui-error')[0].style.display = 'block';
+      this._el.querySelector('.ui-error').innerHTML = '';
+      this._el.querySelector('.ui-error').style.display = 'none';
     }
-
-    return temp;
   }
 
-  _onChange(event) {
-    const temp = event.target.name;
-
-    if (event.target.value === '' && this.initialRequeredFields[temp] === false) {
-      this.requeredFields[temp] = false;
-    }
-
-    if (event.target.value === '' && this.requeredFields[temp] === false) {
-      if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field error') {
-        this.requeredFields[temp] = false;
-        document.getElementsByName(`${temp}.P`)[0].className += ' error';
-      }
+  addMessage(message, value) {
+    if (value) {
+      this._el.querySelector('.ui-message').innerHTML = message;
+      this._el.querySelector('.ui-message').style.display = 'block';
     } else {
-      this.requeredFields[temp] = true;
+      this._el.querySelector('.ui-message').innerHTML = '';
+      this._el.querySelector('.ui-message').style.display = 'none';
     }
   }
 
   _onBlur(event) {
-    const temp = event.target.name;
-
-    if (event.target.value === '' && this.initialRequeredFields[temp] === false) {
-      this.requeredFields[temp] = false;
-    }
-
-    if (event.target.value === '' && this.requeredFields[temp] === false) {
-      if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field error') {
-        this.requeredFields[temp] = false;
-        document.getElementsByName(`${temp}.P`)[0].className += ' error';
-      }
-    } else {
-      this.requeredFields[temp] = true;
+    const temp = event.target;
+    if (temp.value === '' && this.requeredFields[temp.name] === true) {
+      this._el.querySelector(`.${temp.name}P`).className = `input-field ${temp.name}P error`;
     }
   }
 
-  static _onFocus(event) {
+  _onFocus(event) {
     const temp = event.target.name;
-    if (document.getElementsByName(`${temp}.P`)[0].className !== 'input-field') {
-      document.getElementsByName(`${temp}.P`)[0].className += 'input-field';
+    if (this._el.querySelector(`.${temp}P`).className !== `input-field ${temp}`) {
+      this._el.querySelector(`.${temp}P`).className = `input-field ${temp}P`;
     }
+  }
+
+  _checkFill() {
+    const formData = this._getFormData();
+    return Object.keys(formData).every((element) => {
+      if (formData[element] === '' && this.requeredFields[element] === true) {
+        return false;
+      }
+
+      return true;
+    });
   }
 
   _onSubmit() {
-    this.el.addEventListener('submit', (event) => {
+    this._el.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      const check = this._comparePassword(event.target);
-
-      if (this._isFilled() === false) {
-        this.addError();
-        return;
-      }
-
-      if (check === false) {
+      if (this._checkFill() === false) {
+        this._addClassError();
         return;
       }
 
       const formData = this._getFormData();
-      const result = jsonRequest(this.data.url, formData);
-      const obj = JSON.parse(result);
-
-      if (typeof (obj.login) === 'undefined') {
-        window.welcome.innerHTML = obj.reason;
-        window.welcome.hidden = false;
-      } else {
-        if(this.data.title === 'login') {
-          const count = obj.amount;
-          const name = obj.login;
-
-          window.welcome.innerHTML = `Привет, ${name}. Ты зашел ${count} ${plural(count,
-            ['раз', 'раза', 'раз'], 'rus')}`;
-        }
-        else {
-          window.updatePage(0);
-        }
-      }
-    });
-  }
-
-  on(type, callback) {
-    this.el.addEventListener(type, callback);
-  }
-
-  addEvents() {
-    this._onSubmit();
-
-    const form = this.el.querySelector('form');
-    const elements = form.elements;
-
-    Object.keys(elements).forEach((element) => {
-      if (!elements[element].name) {
-        return;
-      }
-      elements[element].addEventListener('blur', this._onBlur.bind(this));
-      elements[element].addEventListener('change', this._onChange.bind(this));
-      elements[element].addEventListener('focus', this._onFocus);
+      this.action(formData, this.addMessageError.bind(this), this.addMessage.bind(this));
     });
   }
 
   _getFormData() {
-    const form = this.el.querySelector('form');
+    const form = this._el.querySelector('form');
     const elements = form.elements;
     const fields = {};
 
     Object.keys(elements).forEach((element) => {
-      let name = elements[element].name;
+      const name = elements[element].name;
       const value = elements[element].value;
-
-      if (name === 'password1' || name === 'password2')
-        name = 'password';
 
       if (!name) {
         return;
@@ -232,10 +104,67 @@ export default class Form {
     return fields;
   }
 
+  _addEvents() {
+    this._onSubmit();
+
+    const form = this._el.querySelector('form');
+    const elements = form.elements;
+
+    Object.keys(elements).forEach((element) => {
+      if (!elements[element].name) {
+        return;
+      }
+      elements[element].addEventListener('blur', this._onBlur.bind(this));
+      elements[element].addEventListener('focus', this._onFocus.bind(this));
+    });
+  }
+
+  _getFieldsRequered() {
+    const { fields = [] } = this.data;
+
+    fields.forEach((field) => {
+      if (field.required === true) {
+        this.requeredFields[field.name] = true;
+      } else {
+        this.requeredFields[field.name] = false;
+      }
+    });
+  }
+
+  _installControls() {
+    const { controls = [] } = this.data;
+
+    controls.forEach((data) => {
+      const control = new Button({ text: data.text }).render();
+      this._el.querySelector('.js-controls').appendChild(control.el);
+    });
+  }
+
+  /*eslint-disable*/
+  _getFields() {
+    const { fields = [] } = this.data;
+
+    return fields.map((field) => {
+      return `<div class="input-field ${field.name}P" >
+        <label for="${field.name}">${field.label}</label>
+        <input type="${field.type}" tabindex="${this.count}" name="${field.name}">
+        <i>This field is required</i>
+        </div>
+      `;
+    }).join(' ');
+  }
+  /*eslint-enable*/
+
+  _updateHtml() {
+    this._el.innerHTML = window.fest[`${path}components/form/form.tmpl`]();
+    this._el.querySelector('.fields').innerHTML = this._getFields();
+  }
+
   render() {
     this._updateHtml();
-    this._getFieldsRequered();
     this._installControls();
-    this.addEvents();
+    this._getFieldsRequered();
+    this._addEvents();
   }
+
 }
