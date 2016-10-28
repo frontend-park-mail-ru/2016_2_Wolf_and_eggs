@@ -16,7 +16,7 @@ export default class collectionUser extends Model {
   }
 
   getUsers() {
-    const result = this.send(this.urlScorebord, {page: this.numberPage}, 'GET');
+    const result = this.send(this.urlScorebord, {}, 'GET');
     this.numberPage++;
     const obj = JSON.parse(result);
 

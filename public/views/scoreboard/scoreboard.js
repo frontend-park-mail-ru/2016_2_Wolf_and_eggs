@@ -11,11 +11,11 @@ export default class Scoreboard extends View {
     super();
     this.users = new collectionUser();
 
-    this.addUsers = this.addUsers.bind(this);
+    // this.addUsers = this.addUsers.bind(this);
   }
 
   addUsers() {
-    let {data, remainingPages} = this.users.getUsers();
+    let {data, remainingPages = 10} = this.users.getUsers();
 
     if (remainingPages === 0) {
       this._el.querySelector('.button').setAttribute('style', 'display: none;');
