@@ -24,6 +24,8 @@ export default class collectionUser extends Model {
     });
 
     console.log(obj, this.data);
+
+    return this.data;
   }
 
 }
