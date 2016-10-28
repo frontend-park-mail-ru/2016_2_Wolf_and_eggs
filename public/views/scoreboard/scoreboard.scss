@@ -15,6 +15,8 @@
   & .button {
     width: 300px;
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 100px;
   }
 }
 
@@ -24,11 +26,12 @@
   margin: auto;
   margin-top: 25px;
   margin-bottom: 25px;
-  color: #000;
+  color: #fff;
 
   &__caption{
     font-size: 28px;
     color: white;
+    margin-bottom: 15px;
   }
 
   & th{
@@ -37,14 +40,14 @@
     text-align: left;
     border-radius: 0;
   }
+  & tr:first-child{
+    background-color: rgba(155, 13, 6, 0.3);
+  }
   & tr:nth-child(2n){
     background-color: rgba(155, 13, 6, 0.3);
   }
   & tr:nth-child(2n - 1){
     background-color: rgba(111, 87, 66, 0.3);
-  }
-  & th:nth-child(2n - 1){
-    color: #777;
   }
   & th:nth-child(2n){
     font-weight: 500;
