@@ -8,7 +8,7 @@ import Game from './views/game/game';
 import './css/reset.css';
 import './css/style.scss';
 
-let router = new Router();
+const router = new Router();
 
 router
   .addRoute('/game', Game)

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "oldTest": "node ./public/built/test.js",
-    "eslint": "./node_modules/.bin/eslint public/*.js public/components/**/*.js public/pages/**/*.js",
+    "eslint": "./node_modules/.bin/eslint public/*.js",
     "webpack": "./node_modules/.bin/webpack --config webpack.config.js",
     "test": "karma start --single-run",
     "karma:start": "karma start",

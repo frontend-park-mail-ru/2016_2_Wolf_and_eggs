@@ -4,7 +4,7 @@
 import Block from '../block/block';
 
 import './button.scss';
-import  './button.tmpl.xml';
+import './button.tmpl.xml';
 import path from '../../tools/getPath';
 
 export default class Button extends Block {
@@ -20,12 +20,9 @@ export default class Button extends Block {
 
   render() {
     if (this._options.style === 'dart') {
-      this._el.innerHTML = window.fest[path + 'components/newButton/button.tmpl'](this.text);
-      return this._el;
+      this._el.innerHTML = window.fest[`${path}components/newButton/button.tmpl`](this.text);
     }
-    else {
-      return this._el;
-    }
+    return this._el;
   }
 
 }

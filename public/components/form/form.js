@@ -1,7 +1,10 @@
 import Button from '../button/button';
 import Block from '../block/block';
 
-export default class Form extends Block{
+import './form.tmpl.xml';
+import path from '../../tools/getPath';
+
+export default class Form extends Block {
 
   constructor(options = { data: {} }) {
     super('div');
@@ -27,8 +30,7 @@ export default class Form extends Block{
     if (value) {
       this._el.querySelector('.ui-error').innerHTML = message;
       this._el.querySelector('.ui-error').style.display = 'block';
-    }
-    else {
+    } else {
       this._el.querySelector('.ui-error').innerHTML = '';
       this._el.querySelector('.ui-error').style.display = 'none';
     }
@@ -38,8 +40,7 @@ export default class Form extends Block{
     if (value) {
       this._el.querySelector('.ui-message').innerHTML = message;
       this._el.querySelector('.ui-message').style.display = 'block';
-    }
-    else {
+    } else {
       this._el.querySelector('.ui-message').innerHTML = '';
       this._el.querySelector('.ui-message').style.display = 'none';
     }
@@ -80,7 +81,7 @@ export default class Form extends Block{
       }
 
       const formData = this._getFormData();
-      this.action(formData, this.addMessageError.bind(this), this.addMessage.bind(this))
+      this.action(formData, this.addMessageError.bind(this), this.addMessage.bind(this));
     });
   }
 
@@ -139,39 +140,31 @@ export default class Form extends Block{
     });
   }
 
+  /*eslint-disable*/
   _getFields() {
     const { fields = [] } = this.data;
 
     return fields.map((field) => {
-      return `
-        <div class="input-field ${field.name}P">
-          <label for="${field.name}">${field.label}</label>
-          <input type="${field.type}" tabindex="${this.count}" name="${field.name}">
-          <i>This field is required</i>
+      return `<div class="input-field ${field.name}P" >
+        <label for="${field.name}">${field.label}</label>
+        <input type="${field.type}" tabindex="${this.count}" name="${field.name}">
+        <i>This field is required</i>
         </div>
       `;
     }).join(' ');
   }
+  /*eslint-enable*/
 
   _updateHtml() {
-    this._el.innerHTML = `
-    <div class="ui-message z-depth-1"></div>
-    <div class="ui-error z-depth-1"></div>
-    <form class="ui-form z-depth-1">
-      <div>
-        ${this._getFields()}
-      </div>
-      <div class="js-controls">
-      </div>
-    <form>
-  `;
+    this._el.innerHTML = window.fest[`${path}components/form/form.tmpl`]();
+    this._el.querySelector('.fields').innerHTML = this._getFields();
   }
 
   render() {
     this._updateHtml();
     this._installControls();
     this._getFieldsRequered();
-    this._addEvents()
+    this._addEvents();
   }
 
 }
