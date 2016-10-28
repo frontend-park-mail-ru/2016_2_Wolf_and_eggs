@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="scoreboard_wrapper">
-        <table class="scoreboard__table" border="1">
+        <table class="table" border="1">
             <caption>Рейтинг игроков</caption>
             <tr>
                 <th>Id</th>
