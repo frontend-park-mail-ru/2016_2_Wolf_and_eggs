@@ -2,7 +2,7 @@
     <div class="scoreboard_background">
         <div class="scoreboard_wrapper">
             <table class="table" border="1">
-                <caption>Рейтинг игроков</caption>
+                <caption class="table__caption">Рейтинг игроков</caption>
                 <tr>
                     <th>Id</th>
                     <th>Login</th>

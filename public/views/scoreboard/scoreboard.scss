@@ -3,6 +3,8 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: top;
+  border: 1px solid;
+  background-size: cover;
 
 
   &_wrapper {
@@ -20,8 +22,14 @@
   width: 600px;
   display: block;
   margin: auto;
-  margin: 25px 0 25px 0;
+  margin-top: 25px;
+  margin-bottom25px;
   color: #000;
+
+  &___caption{
+    font-size: 28px;
+    color: white;
+  }
 
   & th{
     width: 50%;
