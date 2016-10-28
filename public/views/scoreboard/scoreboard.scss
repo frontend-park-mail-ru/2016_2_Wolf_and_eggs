@@ -40,9 +40,6 @@
     text-align: left;
     border-radius: 0;
   }
-  & tr:first-child{
-    background-color: rgba(155, 13, 6, 0.3);
-  }
   & tr:nth-child(2n){
     background-color: rgba(155, 13, 6, 0.3);
   }
@@ -51,5 +48,8 @@
   }
   & th:nth-child(2n){
     font-weight: 500;
+  }
+  &__titles{
+    background-color: rgba(155, 13, 6, 0.3);
   }
 }

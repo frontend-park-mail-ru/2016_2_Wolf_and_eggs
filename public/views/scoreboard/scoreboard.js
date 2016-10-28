@@ -29,7 +29,7 @@ export default class Scoreboard extends View {
     this._el.innerHTML = window.fest[path + 'views/scoreboard/scoreboard.tmpl']();
     this.addUsers();
 
-    let button1 = new Button('Single Player', {style: 'dart'});
+    let button1 = new Button('Показать ещё', {style: 'dart'});
     button1.on('click', this.addUsers.bind(this));
 
     this._el.querySelector('.scoreboard_wrapper').appendChild(button1.render());
