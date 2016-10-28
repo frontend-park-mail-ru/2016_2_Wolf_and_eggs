@@ -4,20 +4,15 @@
   height: 100vh;
   min-width: 1000px;
   min-height: 620px;
+  background: url("/img/scoreboard.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: top;
 
   &_wrapper {
     width: 1000px;
     margin: auto;
     position: relative;
-  }
-
-  &_background{
-    background: url("/img/scoreboard.png") no-repeat 100% 100%;
-    background-size: cover;
-    height: 100vh;
-    min-width: 1000px;
-    min-height: 620px;
-    position: fixed;
   }
 
   & .button {
