@@ -2,7 +2,7 @@ import View from '../../modules/view';
 import Button from '../../components/newButton/button'
 import collectionUser from '../../models/collectionUser';
 
-import './main.tmpl.xml';
+import './scoreboard.tmpl.xml';
 import path from '../../tools/getPath';
 
 export default class Scoreboard extends View {
@@ -14,6 +14,7 @@ export default class Scoreboard extends View {
     let users = new collectionUser();
     let data = users.getUsers();
 
+    console.log(data[0].User.user.login);
     this._el.className = 'scoreboard';
     this._el.innerHTML = window.fest[path + 'views/scoreboard/scoreboard.tmpl'](data);
 
