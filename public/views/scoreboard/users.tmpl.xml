@@ -1,0 +1,9 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <fest:for iterate="data" index="i" value="field">
+        <tr>
+            <th><fest:value>field.user.id</fest:value></th>
+            <th><fest:value>field.user.login</fest:value></th>
+            <th><fest:value>field.user.rating</fest:value></th>
+        </tr>
+    </fest:for>
+</fest:template>

@@ -6,7 +6,7 @@ export default class collectionUser extends Model {
   constructor(attributes) {
     super(attributes);
     this.data = [];
-    this.numberPage = 0;
+    this.numberPage = 1;
 
     // this.signup = this.signup.bind(this);
   }
@@ -17,6 +17,7 @@ export default class collectionUser extends Model {
 
   getUsers() {
     const result = this.send(this.urlScorebord, {page: this.numberPage}, 'GET');
+    this.numberPage++;
     const obj = JSON.parse(result);
 
     obj.forEach(value => {
@@ -25,7 +26,7 @@ export default class collectionUser extends Model {
 
     console.log(obj, this.data);
 
-    return this.data;
+    return { data: this.data, remainingPages: this.numberPage };
   }
 
 }
