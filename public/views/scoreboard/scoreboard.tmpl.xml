@@ -1,0 +1,12 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="scoreboard_wrapper">
+        <table class="table" border="1">
+            <caption class="table__caption">Рейтинг игроков</caption>
+            <tr class="table__titles">
+                <th>Id</th>
+                <th>Login</th>
+                <th>Score</th>
+            </tr>
+        </table>
+    </div>
+</fest:template>

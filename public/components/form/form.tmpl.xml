@@ -1,0 +1,11 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="ui-message z-depth-1"></div>
+    <div class="ui-error z-depth-1"></div>
+    <form class="ui-form z-depth-1">
+        <div class="fields">
+
+        </div>
+        <div class="js-controls">
+        </div>
+    </form>
+</fest:template>

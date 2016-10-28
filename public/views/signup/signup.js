@@ -1,7 +1,9 @@
 import Form from '../../components/form/form';
+import View from '../../modules/view';
+import User from '../../models/user';
 
+let user = new User();
 const form = new Form({
-  el: document.createElement('div'),
   data: {
     title: 'signup',
     url: '/api/signup',
@@ -10,13 +12,13 @@ const form = new Form({
         name: 'login',
         type: 'text',
         label: 'Username',
-        required: false,
+        required: true,
       },
       {
         name: 'email',
         type: 'email',
         label: 'Email',
-        required: true,
+        required: false,
       },
       {
         name: 'password1',
@@ -40,22 +42,16 @@ const form = new Form({
       },
     ],
   },
+  action: user.signup,
 });
 
-function signup() {
-  const formSignup = document.createElement('div');
-  formSignup.appendChild(form.el);
+export default class Signup extends View {
+  constructor() {
+    super();
+  }
 
-  const temp1 = document.createElement('div');
-  temp1.innerHTML = `
-  <div class="link-signup z-depth-1">
-    <span><a class="link1">Вернуться назад</a></span>
-  </div>
- `;
-  temp1.querySelector('.link1').addEventListener('click', () => { this.updatePage(0); });
-  formSignup.appendChild(temp1);
-
-  return formSignup;
+  init() {
+    form.renderTo(this._el);
+    document.querySelector('.content').appendChild(this._el);
+  }
 }
-
-export default signup;

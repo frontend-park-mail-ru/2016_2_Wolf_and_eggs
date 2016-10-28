@@ -6,9 +6,7 @@ export default class Block {
   }
 
   setAttrs(attrs = {}) {
-    Object.keys(attrs).forEach(name => {
-      this._el.setAttribute(name, attrs[name]);
-    });
+    Object.keys(attrs).forEach(name => this._el.setAttribute(name, attrs[name]));
   }
 
   renderTo(element) {

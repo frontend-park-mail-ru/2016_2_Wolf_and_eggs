@@ -1,0 +1,65 @@
+.button{
+  cursor: pointer;
+  padding: 0 2px;
+  background-color: #c1b3b0;
+  background: linear-gradient(to bottom, #c1b3b0, #c1b3b0 9%, #4a3424 93%, #1c140d);
+  border-top: 2px solid #AD9A90;
+  border-bottom: 2px solid #1c140d;
+  border-right: none;
+  border-left: none;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.35);
+  border-radius: 5px;
+  display: block;
+  height: auto;
+
+  &_dart{
+    padding: 4px;
+    background-color: #6f5742;
+    background: linear-gradient(to bottom, #6f5742, #81615d);
+    border-radius: 3px;
+    border: 0;
+    display: block;
+  }
+  &_dart_btn{
+    background-color: #c7040d;
+    background: linear-gradient(#ff101a, #ee0e23 5%, #9b0a07 59%, #620208);
+    box-shadow: 0px 2px 6px 0px #331e0b;
+    display: table;
+    padding: 3px;
+    color: white;
+    text-decoration: none;
+    text-shadow: 1px 1px black;
+    font-size: 17px;
+    font-size: 1.1rem;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-align: center;
+    border-radius: 2px;
+    height: 35px;
+    height: 2.2rem;
+    min-height: 35px;
+    min-height: 2.2rem;
+    width: 100%;
+  }
+  &_dart_text{
+    background: radial-gradient(circle, #b90725 16.81%, #b5251b 50%, #62020b);
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+    color: #fff;
+    padding: 9px 24px;
+    padding: 0.6rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 4px #000, 0 0 8px #000;
+    font-size: 20px;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+  }
+  &_dart:hover .button_dart_text{
+    background: radial-gradient(circle, #ee3c41 22%, #8e0903);
+  }
+
+}

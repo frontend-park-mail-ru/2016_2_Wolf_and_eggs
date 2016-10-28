@@ -4,6 +4,11 @@ let parser = require('body-parser');
 let app = express();
 
 app.use('/', express.static('public'));
+app.use('/game', express.static('public'));
+app.use('/signup', express.static('public'));
+app.use('/signin', express.static('public'));
+app.use('/img', express.static('public/img'));
+app.use('/scoreboard', express.static('public/'));
 
 app.use(parser.json());
 app.use(technologger);
