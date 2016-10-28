@@ -20,6 +20,7 @@ export default class collectionUser extends Model {
     this.numberPage++;
     const obj = JSON.parse(result);
 
+    this.data = [];
     obj.forEach(value => {
       this.data.push(new User(value));
     });
