@@ -17,8 +17,9 @@ export default class User extends Model {
 
   get defaults() {
     return {
-      name: 'anonymous',
-      email: ''
+      login: 'anonymous',
+      email: '',
+      score: 0
     }
   }
 
@@ -40,7 +41,6 @@ export default class User extends Model {
   }
 
   login(formData, addMessageError, addMessage) {
-    console.log(this.urlLogin, formData, this);
     const result = this.send(this.urlLogin, formData, 'POST');
     const obj = JSON.parse(result);
 
@@ -48,9 +48,12 @@ export default class User extends Model {
       addMessage('', false);
       addMessageError(obj.reason, true);
     } else {
+      this.user.login = obj.login;
+      this.user.email = obj.email;
+
       const count = obj.amount;
-      const name = obj.login;
-      const message = `Привет, ${name}. Ты зашел ${count} ${plural(count, ['раз', 'раза', 'раз'], 'rus')}`;
+      const login = obj.login;
+      const message = `Привет, ${login}. Ты зашел ${count} ${plural(count, ['раз', 'раза', 'раз'], 'rus')}`;
       addMessageError('', false);
       addMessage(message, true);
     }
@@ -77,6 +80,9 @@ export default class User extends Model {
       addMessage('', false);
       addMessageError(obj.reason, true);
     } else {
+      this.user.login = obj.login;
+      this.user.email = obj.email;
+
       router.go('/');
     }
   }

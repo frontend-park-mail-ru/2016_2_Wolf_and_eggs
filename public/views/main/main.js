@@ -26,11 +26,19 @@ export default class Main extends View {
     let button3 = new Button('Sign up', {style: 'dart'});
     button3.on('click', this.showSignup.bind(this));
 
+    let button4 = new Button('Scoreboard', {style: 'dart'});
+    button4.on('click', this.showScoreboard.bind(this));
+
     this._el.querySelector('.main__menu').appendChild(button1.render());
     this._el.querySelector('.main__menu').appendChild(button2.render());
     this._el.querySelector('.main__menu').appendChild(button3.render());
+    this._el.querySelector('.main__menu').appendChild(button4.render());
 
     document.querySelector('.content').appendChild(this._el);
+  }
+
+  showScoreboard() {
+    this.router.go('/scoreboard');
   }
 
   showSignin() {
