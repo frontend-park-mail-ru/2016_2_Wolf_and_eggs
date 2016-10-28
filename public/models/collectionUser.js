@@ -24,7 +24,7 @@ export default class collectionUser extends Model {
       this.data.push(new User(value));
     });
 
-    return { data: this.data, remainingPages: this.numberPage };
+    return { data: this.data, remainingPages: this.numberPage - this.data[0].password };
   }
 
 }
