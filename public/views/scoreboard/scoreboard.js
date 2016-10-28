@@ -21,10 +21,7 @@ export default class Scoreboard extends View {
       this._el.querySelector('.button').setAttribute('style', 'display: none;');
     }
 
-    let kost = document.createTextNode(window.fest[path + 'views/scoreboard/users.tmpl'](data))
-    console.log(kost);
-
-    this._el.querySelector('.scoreboard__table').appendChild(kost);
+    this._el.querySelector('.scoreboard__table').innerHTML += window.fest[path + 'views/scoreboard/users.tmpl'](data);
   }
 
   init() {

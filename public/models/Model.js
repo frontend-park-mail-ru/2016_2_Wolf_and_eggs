@@ -15,8 +15,13 @@ export default class Model {
     return '/';
   }
 
-  send(url, data = {}, method = 'GET') {
+  send(url, data, method = 'GET') {
       const xhr = new XMLHttpRequest();
+
+      if(method === 'GET') {
+        url += `?page=${data}`;
+      }
+
       xhr.open(method, url, false);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify(data));
