@@ -17,6 +17,7 @@
     height: 100vh;
     min-width: 1000px;
     min-height: 620px;
+    position: fixed;
   }
 
   & .button {
@@ -29,6 +30,8 @@
   width: 600px;
   display: block;
   margin: auto;
+  margin: 25px 0 25px 0;
+  color: #000;
 
   & th{
     width: 50%;
@@ -47,6 +50,5 @@
   }
   & th:nth-child(2n){
     font-weight: 500;
-    color: #000;
   }
 }
