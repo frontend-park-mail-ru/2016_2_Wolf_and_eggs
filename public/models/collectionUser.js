@@ -8,7 +8,7 @@ export default class collectionUser extends Model {
     this.data = [];
     this.numberPage = 1;
 
-    // this.signup = this.signup.bind(this);
+    this.getUsers = this.getUsers.bind(this);
   }
 
   get urlScorebord() {
