@@ -24,8 +24,6 @@ export default class collectionUser extends Model {
       this.data.push(new User(value));
     });
 
-    console.log(obj, this.data);
-
     return { data: this.data, remainingPages: this.numberPage };
   }
 
