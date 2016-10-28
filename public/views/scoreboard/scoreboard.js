@@ -17,7 +17,7 @@ export default class Scoreboard extends View {
   addUsers() {
     let {data, remainingPages = 10} = this.users.getUsers();
 
-    if (remainingPages === 0) {
+    if (remainingPages <= 0) {
       this._el.querySelector('.button').setAttribute('style', 'display: none;');
     }
 
